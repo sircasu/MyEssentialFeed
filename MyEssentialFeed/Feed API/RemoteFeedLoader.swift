@@ -46,14 +46,14 @@ public final class RemoteFeedLoader {
         client.get(from: self.url) { result in
             
             switch result {
-            case let .success(data, response):
+            case let .success(data, _):
                 if let _ = try? JSONSerialization.jsonObject(with: data) {
                     completion(.success([]))
                 } else {
                     completion(.failure(.invalidData))
                 }
 
-            case .failure(let err):
+            case .failure:
                 completion(.failure(.connectivity))
             }
             
