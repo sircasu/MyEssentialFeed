@@ -31,7 +31,10 @@ public final class RemoteFeedLoader {
     }
     
     public func load(completion: @escaping (Result) -> Void) {
-        client.get(from: self.url) { result in
+        client.get(from: self.url) { [weak self] result in
+            
+            // check if exist a reference of self, if not doesn't do anything (avoid memory leak)
+            guard self != nil else { return }
             
             switch result {
             case let .success(data, response):
