@@ -23,11 +23,14 @@ class URLSessionHTTPClient {
     
     func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
 
-        session.dataTask(with: url) { _, _, error in
+        session.dataTask(with: url) {data, response, error in
             
             if let error = error {
                 completion(.failure(error))
-            } else {
+            } else if let data = data, data.count > 0, let response = response as? HTTPURLResponse {
+                completion(.success(data, response))
+            }
+            else {
                 completion(.failure(UnexpectedValueRepresentation()))
             }
         }.resume()
@@ -38,13 +41,13 @@ class URLSessionHTTPClient {
 class URLSessionHTTPClientTests: XCTestCase {
     
     
-    override class func setUp() {
+    override func setUp() {
         super.setUp()
         URLProtocolStub.startInterceptingRequest()
     }
     
     
-    override class func tearDown() {
+    override func tearDown() {
         super.tearDown()
         URLProtocolStub.stopInterceptingRequest()
     }
@@ -94,6 +97,33 @@ class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertNotNil(resultForError(data: anyData(), response: nonHTTPURLResponse(), error: nil) as? NSError)
     }
     
+    
+    func test_getFromURL_succedsOnHTTPURLResponseWithData() {
+        let data = anyData()
+        let response = anyHTTPURLResponse()
+        URLProtocolStub.stub(data: data, response: response, error: nil)
+
+        let exp = expectation(description: "Wait for completion")
+
+        makeSUT().get(from: anyURL()) { result in
+
+            switch result {
+            case let .success(receivedData, receivedResponse):
+                XCTAssertEqual(receivedData, data)
+                XCTAssertEqual(receivedResponse.url, response.url)
+                XCTAssertEqual(receivedResponse.statusCode, response.statusCode)
+                break
+            default:
+                XCTFail("Expected success, got \(result)")
+
+            }
+
+            exp.fulfill()
+        }
+
+        wait(for: [exp], timeout: 1.0)
+    }
+
     
     
     // MARK: - Helpers
