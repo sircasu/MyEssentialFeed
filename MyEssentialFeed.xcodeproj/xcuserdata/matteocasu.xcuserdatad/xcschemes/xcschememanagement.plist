@@ -4,13 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CI.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>MyEssentialFeed.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
 		<key>MyEssentialFeedAPIEndToEndTests.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
@@ -23,6 +32,11 @@
 			<true/>
 		</dict>
 		<key>8513C1732ACE8ECD0095989C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>854CDA972ADAE1E0000CC9EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
