@@ -216,7 +216,6 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         /* we intercept the request and we have the responsability to commplete the request */
         override class func canInit(with request: URLRequest) -> Bool {
-            requestObserver?(request)
             return true
         }
         
@@ -227,6 +226,13 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         /* the framework has accepted tht we are going to handle this request, and can invoke us to say that it is time to invoke the url */
         override func startLoading() {
+            
+            
+            if let requestObserver = URLProtocolStub.requestObserver {
+                client?.urlProtocolDidFinishLoading(self)
+                return requestObserver(request)
+            }
+
             
             if let data = URLProtocolStub.stub?.data {
                 client?.urlProtocol(self, didLoad: data)
