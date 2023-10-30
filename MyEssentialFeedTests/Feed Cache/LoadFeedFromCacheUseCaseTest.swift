@@ -22,11 +22,31 @@ class LoadFeedFromCacheUseCaseTest: XCTestCase {
         
         let (sut, store) = makeSUT()
         
-        sut.load()
+        sut.load { _ in }
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
+    
+    func test_load_failsOnRetrievalError() {
+        
+        let (sut, store) = makeSUT()
+        let retrievalError = anyNSError()
+        
+        let exp = expectation(description: "Waiting for loading completion")
+        
+        var receivedError: Error?
+        sut.load { error in
+            receivedError = error
+            exp.fulfill()
+        }
+        
+        store.completeRetrieval(with: retrievalError)
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedError as NSError?, retrievalError)
+    }
     
     
     // MARK: - Helpers
@@ -41,5 +61,8 @@ class LoadFeedFromCacheUseCaseTest: XCTestCase {
     }
     
     
-
+    
+    private func anyNSError() -> NSError {
+        return NSError(domain: "any error", code: 0)
+    }
 }
