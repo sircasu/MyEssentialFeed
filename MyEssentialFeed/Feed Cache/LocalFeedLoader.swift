@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class LocalFeedLoader: FeedLoader {
+public final class LocalFeedLoader{
     
     public typealias SaveResult = Error?
     public typealias LoadResult = LoadFeedResult
@@ -66,7 +66,7 @@ extension LocalFeedLoader {
     }
 }
  
-extension LocalFeedLoader {
+extension LocalFeedLoader: FeedLoader  {
     
     public func load(completion: @escaping (LoadResult) -> Void) {
         
