@@ -8,7 +8,7 @@
 import Foundation
 
 // This is our Feed Item representation for the Cache Module` - DTO data transfer object - data transfer of the model to remove strong coupling between modules
-public struct LocalFeedImage: Equatable, Codable {
+public struct LocalFeedImage: Equatable {
     public let id: UUID
     public let description: String?
     public let location: String?
