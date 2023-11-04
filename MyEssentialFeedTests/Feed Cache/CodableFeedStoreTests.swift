@@ -101,7 +101,7 @@ class CodableFeedStoreTests: XCTestCase {
     }
     
     
-    func test_retrieveAfterInsertingToEmptyCache_deliversInsertedValues() {
+    func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
         
         //given block
         let sut = makeSUT()
