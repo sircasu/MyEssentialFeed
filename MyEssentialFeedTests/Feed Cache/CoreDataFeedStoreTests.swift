@@ -6,11 +6,16 @@
 //
 
 import XCTest
+import MyEssentialFeed
+
+
 
 class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     
     func test_retrieve_deliversOnEmptyOnEmptyCache() {
         
+        let sut = makeSUT()
+        assertThatRetrieveDeliversEmptyOnEmptyCache(on: sut)
     }
     
     
@@ -66,6 +71,18 @@ class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     
     func test_storeSideEffects_runSerially() {
         
+    }
+    
+    
+    
+    
+    //MARK: - Helpers
+    
+    public func makeSUT(file: StaticString = #file, line: UInt = #line) -> FeedStore {
+        
+        let sut = CoreDataFeedStore()
+        trackForMemoryLeaks(sut, file: file, line: line)
+        return sut
     }
     
     
