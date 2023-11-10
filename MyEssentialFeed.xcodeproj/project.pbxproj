@@ -151,7 +151,6 @@
 				8537E9182AEA7A7900114370 /* Feed Cache */,
 				8513C1882ACE91920095989C /* Feed Feature */,
 				8513C18B2AD05F1C0095989C /* Feed API */,
-				85776F832AFE71E3007AF2F0 /* FeedStore.xcdatamodeld */,
 			);
 			path = MyEssentialFeed;
 			sourceTree = "<group>";
@@ -211,6 +210,7 @@
 				853ADEA62AF2A492007FA902 /* FeedCachePolicy.swift */,
 				85776F792AF7F5B5007AF2F0 /* CodableFeedStore.swift */,
 				85776F812AFE4F62007AF2F0 /* CoreDataFeedStore.swift */,
+				85776F832AFE71E3007AF2F0 /* FeedStore.xcdatamodeld */,
 			);
 			path = "Feed Cache";
 			sourceTree = "<group>";
