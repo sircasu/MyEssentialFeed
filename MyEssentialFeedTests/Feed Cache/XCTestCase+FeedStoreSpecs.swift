@@ -39,7 +39,7 @@ extension FeedStoreSpecs where Self: XCTestCase {
 
     func assertThatInsertDeliversNoErrorOnEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         let insertionError = insert((uniqueImageFeed().local, Date()), to: sut)
-
+        
         XCTAssertNil(insertionError, "Expected to insert cache successfully", file: file, line: line)
     }
 
@@ -116,16 +116,14 @@ extension FeedStoreSpecs where Self: XCTestCase {
     }
     
     @discardableResult
-    func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date) ,to sut: FeedStore) -> Error? {
-        
-        let exp = expectation(description: "Wait for cache retrieval")
+    func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date), to sut: FeedStore) -> Error? {
+        let exp = expectation(description: "Wait for cache insertion")
         var insertionError: Error?
         sut.insert(cache.feed, timestamp: cache.timestamp) { receivedInsertionError in
             insertionError = receivedInsertionError
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)
-        
         return insertionError
     }
     
@@ -146,7 +144,7 @@ extension FeedStoreSpecs where Self: XCTestCase {
     
     
     
-    func expect(_ sut: FeedStore, toRetrieve expectedResult: RetrieveCacheFeedResult, file: StaticString = #file, line: UInt = #line) {
+    func expect(_ sut: FeedStore, toRetrieve expectedResult: RetrieveCachedFeedResult, file: StaticString = #file, line: UInt = #line) {
         
         let exp = expectation(description: "Wait for cache retrieval")
 
@@ -174,7 +172,7 @@ extension FeedStoreSpecs where Self: XCTestCase {
     }
     
     
-    func expect(_ sut: FeedStore, toRetrieveTwice expectedResult: RetrieveCacheFeedResult, file: StaticString = #file, line: UInt = #line) {
+    func expect(_ sut: FeedStore, toRetrieveTwice expectedResult: RetrieveCachedFeedResult, file: StaticString = #file, line: UInt = #line) {
         
         expect(sut, toRetrieve: expectedResult, file: file, line: line)
         expect(sut, toRetrieve: expectedResult, file: file, line: line)
