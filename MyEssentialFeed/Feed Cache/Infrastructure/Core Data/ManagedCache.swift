@@ -11,8 +11,9 @@ import CoreData
 internal class ManagedCache: NSManagedObject {
     @NSManaged var timestamp: Date
     @NSManaged var feed: NSOrderedSet
-    
-    
+}
+
+extension ManagedCache {
     internal static func find(in context: NSManagedObjectContext) throws -> ManagedCache? {
         let request = NSFetchRequest<ManagedCache>(entityName: ManagedCache.entity().name!)
         request.returnsObjectsAsFaults = false
@@ -40,8 +41,9 @@ internal class ManagedFeedImage: NSManagedObject {
     @NSManaged var location: String?
     @NSManaged var url: URL
     @NSManaged var cache: ManagedCache
-    
-        
+}
+
+extension ManagedFeedImage {
     internal static func image(from localFeed: [LocalFeedImage], in context: NSManagedObjectContext) -> NSOrderedSet {
         return NSOrderedSet(array: localFeed.map { local in
             
