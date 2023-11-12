@@ -114,6 +114,9 @@ extension FeedStoreSpecs where Self: XCTestCase {
 
         XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order", file: file, line: line)
     }
+}
+
+extension FeedStoreSpecs where Self: XCTestCase {
     
     @discardableResult
     func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date), to sut: FeedStore) -> Error? {
