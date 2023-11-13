@@ -10,6 +10,17 @@ import MyEssentialFeed
 
 final class MyEssentialFeedCacheIntegrationTests: XCTestCase {
 
+    override func setUp() {
+        super.setUp()
+        
+        setupEmptyStoreState()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        
+        undoStoreSideEffects()
+    }
     
     
     func test_load_deliversNoItemsOnEmptyCache() {
@@ -38,7 +49,7 @@ final class MyEssentialFeedCacheIntegrationTests: XCTestCase {
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> LocalFeedLoader {
         
         let storeBundle = Bundle(for: CoreDataFeedStore.self)
-        let storeURL = testSpecifiedStoreURL()
+        let storeURL = testSpecificStoreURL()
         let store = try! CoreDataFeedStore(storeURL: storeURL, bundle: storeBundle)
         let sut = LocalFeedLoader(store: store, currentDate: Date.init)
         trackForMemoryLeaks(store, file: file, line: line)
@@ -47,8 +58,22 @@ final class MyEssentialFeedCacheIntegrationTests: XCTestCase {
     }
     
     
+    private func setupEmptyStoreState() {
+        deleteStoreArtifacts()
+    }
+    
+    
+    private func  undoStoreSideEffects() {
+        deleteStoreArtifacts()
+    }
+    
+    private func deleteStoreArtifacts() {
+        try? FileManager.default.removeItem(at: testSpecificStoreURL())
+    }
+    
+    
     // REAL file system url
-    private func testSpecifiedStoreURL() -> URL {
+    private func testSpecificStoreURL() -> URL {
         return cachesDirectory().appendingPathComponent("\(type(of: self)).store")
     }
     
