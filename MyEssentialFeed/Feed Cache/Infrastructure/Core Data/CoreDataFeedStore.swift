@@ -21,8 +21,7 @@ public final class CoreDataFeedStore: FeedStore {
     
     public func retrieve(completion: @escaping RetrievalCompletion) {
         
-        let context = self.context
-        context.perform {
+        perform { context in
 
             do {
 
