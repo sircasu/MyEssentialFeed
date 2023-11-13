@@ -1,0 +1,34 @@
+{
+  "configurations" : [
+    {
+      "id" : "C6AEEF33-05E6-427F-919E-0EFB8F714EA6",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:MyEssentialFeed.xcodeproj",
+          "identifier" : "8513C16B2ACE8ECD0095989C",
+          "name" : "MyEssentialFeed"
+        }
+      ]
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MyEssentialFeed.xcodeproj",
+        "identifier" : "85776FBE2B020961007AF2F0",
+        "name" : "MyEssentialFeedCacheIntegrationTests"
+      }
+    }
+  ],
+  "version" : 1
+}
