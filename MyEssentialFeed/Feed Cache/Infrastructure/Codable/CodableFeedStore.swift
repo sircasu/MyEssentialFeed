@@ -5,6 +5,8 @@
 //  Created by Matteo Casu on 05/11/23.
 //
 
+// MARK: WE CAN REMOVE IT
+
 import Foundation
 
 public final class CodableFeedStore: FeedStore {

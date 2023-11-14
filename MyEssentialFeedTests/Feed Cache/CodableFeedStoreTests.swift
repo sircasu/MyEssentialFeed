@@ -8,6 +8,7 @@
 import XCTest
 import MyEssentialFeed
 
+// MARK: WE CAN REMOVE IT
 
 class CodableFeedStoreTests: XCTestCase, FailableFeedStoreSpec {
     

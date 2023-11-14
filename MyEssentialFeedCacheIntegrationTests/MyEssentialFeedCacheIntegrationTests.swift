@@ -70,11 +70,13 @@ final class MyEssentialFeedCacheIntegrationTests: XCTestCase {
     
     // MARK: Helpers
     
+    // proved that we can test successfully both CoreDataFeedStore and CodableFeedStore in integration thanks to principle like Dependency Inversion, LSP, ISP ecc
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> LocalFeedLoader {
         
         let storeBundle = Bundle(for: CoreDataFeedStore.self)
         let storeURL = testSpecificStoreURL()
         let store = try! CoreDataFeedStore(storeURL: storeURL, bundle: storeBundle)
+//        let store = CodableFeedStore(storeURL: storeURL)
         let sut = LocalFeedLoader(store: store, currentDate: Date.init)
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
