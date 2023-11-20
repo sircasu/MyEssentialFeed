@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8525F2C32B0A9FB800BD7CCA /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525F2C22B0A9FB800BD7CCA /* FeedViewController.swift */; };
+		8525F2C52B0B3FE200BD7CCA /* FeedImageViewModel+PrototypeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525F2C42B0B3FE200BD7CCA /* FeedImageViewModel+PrototypeData.swift */; };
 		857834F52B0A5FF0000637DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857834F42B0A5FF0000637DA /* AppDelegate.swift */; };
 		857834F72B0A5FF0000637DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857834F62B0A5FF0000637DA /* SceneDelegate.swift */; };
 		857834FC2B0A5FF0000637DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857834FA2B0A5FF0000637DA /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		8525F2C22B0A9FB800BD7CCA /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		8525F2C42B0B3FE200BD7CCA /* FeedImageViewModel+PrototypeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedImageViewModel+PrototypeData.swift"; sourceTree = "<group>"; };
 		857834F12B0A5FF0000637DA /* Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857834F42B0A5FF0000637DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		857834F62B0A5FF0000637DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				857834F62B0A5FF0000637DA /* SceneDelegate.swift */,
 				857834FA2B0A5FF0000637DA /* Main.storyboard */,
 				8525F2C22B0A9FB800BD7CCA /* FeedViewController.swift */,
+				8525F2C42B0B3FE200BD7CCA /* FeedImageViewModel+PrototypeData.swift */,
 				857835002B0A5FF1000637DA /* Assets.xcassets */,
 				857835022B0A5FF1000637DA /* LaunchScreen.storyboard */,
 				857835052B0A5FF1000637DA /* Info.plist */,
@@ -145,6 +148,7 @@
 				857834F52B0A5FF0000637DA /* AppDelegate.swift in Sources */,
 				8525F2C32B0A9FB800BD7CCA /* FeedViewController.swift in Sources */,
 				857834F72B0A5FF0000637DA /* SceneDelegate.swift in Sources */,
+				8525F2C52B0B3FE200BD7CCA /* FeedImageViewModel+PrototypeData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
