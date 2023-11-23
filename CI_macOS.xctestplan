@@ -15,6 +15,11 @@
           "containerPath" : "container:MyEssentialFeed.xcodeproj",
           "identifier" : "8513C16B2ACE8ECD0095989C",
           "name" : "MyEssentialFeed"
+        },
+        {
+          "containerPath" : "container:MyEssentialFeed.xcodeproj",
+          "identifier" : "8525F2CE2B0FD08C00BD7CCA",
+          "name" : "MyEssentialFeediOS"
         }
       ]
     },
@@ -43,6 +48,14 @@
         "containerPath" : "container:MyEssentialFeed.xcodeproj",
         "identifier" : "85776FBE2B020961007AF2F0",
         "name" : "MyEssentialFeedCacheIntegrationTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MyEssentialFeed.xcodeproj",
+        "identifier" : "8525F2D52B0FD08C00BD7CCA",
+        "name" : "MyEssentialFeediOSTests"
       }
     }
   ],
