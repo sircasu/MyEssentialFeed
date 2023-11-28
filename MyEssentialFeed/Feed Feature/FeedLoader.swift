@@ -14,9 +14,9 @@ import Foundation
 //}
 // refactoring to use swift result type `Result<Success, Failure> where Failure : Error`
 
-public typealias LoadFeedResult = Result<[FeedImage], Error>
+//public typealias LoadFeedResult = Result<[FeedImage], Error>
 
 public protocol FeedLoader {
-    
-    func load(completion: @escaping (LoadFeedResult) -> Void)
+    typealias Result = Swift.Result<[FeedImage], Error>
+    func load(completion: @escaping (Result) -> Void)
 }
