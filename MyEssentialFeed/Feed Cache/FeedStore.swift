@@ -17,16 +17,33 @@ import Foundation
 //public typealias RetrieveCachedFeedResult = Result <CachedFeed, Error>
 
 
-public enum CachedFeed {
-    case empty
-    case found(feed: [LocalFeedImage], timestamp: Date)
-}
+//public enum CachedFeed {
+//    case empty
+//    case found(feed: [LocalFeedImage], timestamp: Date)
+//}
+
+
+// refactoring to use standard optional type to represent the concept to havirn or not the CachedFeed
+//public struct CachedFeed {
+//    public let feed: [LocalFeedImage]
+//    public let timestamp: Date
+//    
+//    public init(feed: [LocalFeedImage], timestamp: Date) {
+//        self.feed = feed
+//        self.timestamp = timestamp
+//    }
+//}
+
+// refactoring to typealias (with a tuple)
+public typealias CachedFeed = (feed: [LocalFeedImage], timestamp: Date)
+
+
 
 public protocol FeedStore {
     typealias DeletionCompletion = (Error?) -> Void
     typealias InsertionCompletion = (Error?) -> Void
     
-    typealias RetrievalResult = Result <CachedFeed, Error>
+    typealias RetrievalResult = Result <CachedFeed?, Error>
     typealias RetrievalCompletion = (RetrievalResult) -> Void
 
     /// The completion handler can be invoked in any thread.
