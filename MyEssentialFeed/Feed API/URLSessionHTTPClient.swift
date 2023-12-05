@@ -23,14 +23,17 @@ public class URLSessionHTTPClient: HTTPClient {
 
         session.dataTask(with: url) {data, response, error in
             
-            if let error = error {
-                completion(.failure(error))
-            } else if let data = data, let response = response as? HTTPURLResponse {
-                completion(.success((data, response)))
-            }
-            else {
-                completion(.failure(UnexpectedValueRepresentation()))
-            }
+            completion(Result {
+                if let error = error {
+                    throw error
+                } else if let data = data, let response = response as? HTTPURLResponse {
+                    return (data, response)
+                }
+                else {
+                    throw UnexpectedValueRepresentation()
+                }
+            })
+
         }.resume()
     }
 }
