@@ -22,8 +22,7 @@ final class FeedViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 0, "Expected no loading request once view before all the correct lifecycle are called")
         
 //        sut.loadViewIfNeeded() // viewDidLoad
-        sut.beginAppearanceTransition(true, animated: false) // viewVillAppear
-        sut.endAppearanceTransition() // viewVillAppear + viewDidAppear
+        sut.simulateAppearance()
         XCTAssertEqual(loader.loadCallCount, 1, "Expected a loading request once view is loaded")
     
         sut.simulateUserInitiatedFeedReload()
@@ -53,6 +52,11 @@ final class FeedViewControllerTests: XCTestCase {
         
         loader.completeFeedLoading(at: 1)
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading is completed")
+        
+        
+        sut.beginAppearanceTransition(true, animated: false) // viewVillAppear
+        sut.endAppearanceTransition() // viewVillAppear + viewDidAppear
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected loading indicator once view is loaded")
     }
     
     
@@ -64,7 +68,6 @@ final class FeedViewControllerTests: XCTestCase {
             
         let loader = LoaderSpy()
         let sut = FeedViewController(loader: loader)
-        sut.replaceRefreshControlWithFakeForiOS17Support()
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
@@ -94,6 +97,16 @@ final class FeedViewControllerTests: XCTestCase {
 
 
 private extension FeedViewController {
+    
+    func simulateAppearance() {
+        
+        if !isViewLoaded {
+            replaceRefreshControlWithFakeForiOS17Support()
+        }
+        beginAppearanceTransition(true, animated: false) // viewVillAppear
+        endAppearanceTransition() // viewVillAppear + viewDidAppear
+    }
+    
     
     func replaceRefreshControlWithFakeForiOS17Support() {
         

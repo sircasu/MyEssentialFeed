@@ -10,6 +10,8 @@ import MyEssentialFeed
 
 final public class FeedViewController: UITableViewController {
     
+    private var onViewIsAppearing: ((FeedViewController) -> Void)?
+    
     private var loader: FeedLoader?
     
     // convenience initializer becase we don't need any custom initialization (in this way we don't need to implement UIViewController's required initializer)
@@ -24,11 +26,16 @@ final public class FeedViewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
 
+        onViewIsAppearing = { vc in // guarantee that load logic run only once, because othervise onViewIsAppearing could be called more than once
+            vc.load()
+            vc.onViewIsAppearing = nil
+        }
     }
     
     override public func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
-        load()
+        
+        onViewIsAppearing?(self)
     }
     
     @objc private func load() {
