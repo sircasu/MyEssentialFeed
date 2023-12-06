@@ -18,7 +18,12 @@ final class FeedViewControllerTests: XCTestCase {
         let (sut, loader) = makeSUT()
         XCTAssertEqual(loader.loadCallCount, 0, "Expected no loading requests before view is loaded")
 
-        sut.loadViewIfNeeded()
+        sut.loadViewIfNeeded() // viewDidLoad
+        XCTAssertEqual(loader.loadCallCount, 0, "Expected no loading request once view before all the correct lifecycle are called")
+        
+//        sut.loadViewIfNeeded() // viewDidLoad
+        sut.beginAppearanceTransition(true, animated: false) // viewVillAppear
+        sut.endAppearanceTransition() // viewVillAppear + viewDidAppear
         XCTAssertEqual(loader.loadCallCount, 1, "Expected a loading request once view is loaded")
     
         sut.simulateUserInitiatedFeedReload()
@@ -36,6 +41,8 @@ final class FeedViewControllerTests: XCTestCase {
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
+        sut.beginAppearanceTransition(true, animated: false) // viewVillAppear
+        sut.endAppearanceTransition() // viewVillAppear + viewDidAppear
         XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once view is loaded")
         
         loader.completeFeedLoading(at: 0)
@@ -57,6 +64,7 @@ final class FeedViewControllerTests: XCTestCase {
             
         let loader = LoaderSpy()
         let sut = FeedViewController(loader: loader)
+        sut.replaceRefreshControlWithFakeForiOS17Support()
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
@@ -84,6 +92,24 @@ final class FeedViewControllerTests: XCTestCase {
 }
 
 
+
+private extension FeedViewController {
+    
+    func replaceRefreshControlWithFakeForiOS17Support() {
+        
+        let fake = FakeRefreshControl()
+        
+        refreshControl?.allTargets.forEach { target in
+            refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach { action in
+                fake.addTarget(target, action: Selector(action), for: .valueChanged)
+            }
+            
+            refreshControl = fake
+        }
+    }
+}
+
+
 private extension FeedViewController {
     func simulateUserInitiatedFeedReload() {
         refreshControl?.simulatePullToRefresh()
@@ -106,5 +132,21 @@ private extension UIRefreshControl {
             }
             
         }
+    }
+}
+
+
+private class FakeRefreshControl: UIRefreshControl {
+    
+    private var _isRefreshing = false
+    
+    override var isRefreshing: Bool { _isRefreshing }
+    
+    override func beginRefreshing() {
+        _isRefreshing = true
+    }
+    
+    override func endRefreshing() {
+        _isRefreshing = false
     }
 }
