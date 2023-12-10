@@ -18,7 +18,7 @@ public protocol FeedImageDataLoader {
     func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> FeedImageDataLoaderTask
 }
 
-final public class FeedViewController: UITableViewController {
+final public class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching {
     
     private var onViewIsAppearing: ((FeedViewController) -> Void)?
     
@@ -41,6 +41,8 @@ final public class FeedViewController: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
 
         onViewIsAppearing = { vc in // guarantee that load logic run only once, because othervise onViewIsAppearing could be called more than once
+            
+            vc.tableView.prefetchDataSource = self
             vc.load()
             vc.onViewIsAppearing = nil
         }
@@ -107,5 +109,12 @@ final public class FeedViewController: UITableViewController {
         
         tasks[indexPath]?.cancel()
         tasks[indexPath] = nil
+    }
+    
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach { indexPath in
+            let cellModel = tableModel[indexPath.row]
+            _ = imageLoader?.loadImageData(from: cellModel.url) { _ in }
+        }
     }
 }
