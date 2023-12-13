@@ -19,7 +19,7 @@ import MyEssentialFeed
 
 
 
-final public class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching {
+public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching {
     
     private var onViewIsAppearing: ((FeedViewController) -> Void)?
     
