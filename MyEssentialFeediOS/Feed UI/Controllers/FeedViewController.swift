@@ -18,33 +18,38 @@ import MyEssentialFeed
 
 
 
-
 public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching {
     
     private var onViewIsAppearing: ((FeedViewController) -> Void)?
     
-    private var feedLoader: FeedLoader?
+    public var refreshController: FeedRefreshViewController?
     private var imageLoader: FeedImageDataLoader?
-    private var tableModel = [FeedImage]()
+    private var tableModel = [FeedImage]() {
+        didSet { tableView.reloadData() }
+    }
     private var tasks = [IndexPath: FeedImageDataLoaderTask]()
     
     // convenience initializer becase we don't need any custom initialization (in this way we don't need to implement UIViewController's required initializer)
     public convenience init(feedLoader: FeedLoader, imageLoader: FeedImageDataLoader) {
         self.init()
-        self.feedLoader = feedLoader
+        self.refreshController = FeedRefreshViewController(feedLoader: feedLoader)
         self.imageLoader = imageLoader
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
 
+        refreshControl = refreshController?.view
+        
+        refreshController?.onRefresh = { [weak self] feed in
+            self?.tableModel = feed
+        }
+        
         onViewIsAppearing = { vc in // guarantee that load logic run only once, because othervise onViewIsAppearing could be called more than once
             
             vc.tableView.prefetchDataSource = self
-            vc.load()
+            vc.refreshController?.refresh()
             vc.onViewIsAppearing = nil
         }
     }
@@ -53,20 +58,6 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
         super.viewIsAppearing(animated)
         
         onViewIsAppearing?(self)
-    }
-    
-    @objc private func load() {
-        refreshControl?.beginRefreshing()
-        feedLoader?.load { [weak self] result in
-            
-            if let feed = try? result.get() {
-                self?.tableModel = feed
-                self?.tableView.reloadData()
-            }
-            
-            self?.refreshControl?.endRefreshing()
-        }
-
     }
     
     
