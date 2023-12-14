@@ -56,7 +56,12 @@ final class FeedImageCellController {
     
     /// To keep the same behavior of stopping the request, every time the controller is deinitialized,
     /// we cancel the running task
-    deinit {
+//    deinit {
+//        task?.cancel()
+//    }
+    
+    // instead of deonit
+    func cancelLoad() {
         task?.cancel()
     }
 }

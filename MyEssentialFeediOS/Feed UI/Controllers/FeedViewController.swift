@@ -22,18 +22,16 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
     private var onViewIsAppearing: ((FeedViewController) -> Void)?
     
     public var refreshController: FeedRefreshViewController?
-    private var imageLoader: FeedImageDataLoader?
-    private var tableModel = [FeedImage]() {
+    var tableModel = [FeedImageCellController]() {
         didSet { tableView.reloadData() }
     }
 
-    private var cellControllers = [IndexPath: FeedImageCellController]()
     
     // convenience initializer becase we don't need any custom initialization (in this way we don't need to implement UIViewController's required initializer)
-    public convenience init(feedLoader: FeedLoader, imageLoader: FeedImageDataLoader) {
+    convenience init(refreshController: FeedRefreshViewController) {
         self.init()
-        self.refreshController = FeedRefreshViewController(feedLoader: feedLoader)
-        self.imageLoader = imageLoader
+        self.refreshController = refreshController
+
     }
     
     public override func viewDidLoad() {
@@ -42,9 +40,6 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
 
         refreshControl = refreshController?.view
         
-        refreshController?.onRefresh = { [weak self] feed in
-            self?.tableModel = feed
-        }
         
         onViewIsAppearing = { vc in // guarantee that load logic run only once, because othervise onViewIsAppearing could be called more than once
             
@@ -72,7 +67,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
     
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        removeCellController(forRowAt: indexPath)
+        cancelCellControllerLoad(forRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
@@ -88,19 +83,17 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
 //            cancelTask(forRowAt: indexPath)
 //        }
         // short
-        indexPaths.forEach(removeCellController)
+        indexPaths.forEach(cancelCellControllerLoad)
 
     }
     
     private func cellController(forRowAt indexPath: IndexPath) -> FeedImageCellController {
-        let cellModel = tableModel[indexPath.row]
-        let cellController = FeedImageCellController(model: cellModel, imageLoader: imageLoader!)
-        cellControllers[indexPath] = cellController
-        return cellController
+        
+        return tableModel[indexPath.row]
     }
     
-    private func removeCellController(forRowAt indexPath: IndexPath) {
+    private func cancelCellControllerLoad(forRowAt indexPath: IndexPath) {
 
-        cellControllers[indexPath] = nil
+        cellController(forRowAt: indexPath).cancelLoad()
     }
 }
