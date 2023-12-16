@@ -6,37 +6,50 @@
 //
 
 import UIKit
-import MyEssentialFeed
+
 
 /// Controller to manage the FeedLoader state and update the UIResfreshControl.
 /// It needs to inherits form NSObject because our view target action is based on old Objective-C APIs
 public final class FeedRefreshViewController: NSObject {
     
-    public lazy var view: UIRefreshControl = {
-        let view = UIRefreshControl()
-        view.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        return view
-    }()
+//    public lazy var view: UIRefreshControl = {
+////        let view = UIRefreshControl()
+////        return bind(view)
+//        return bind(UIRefreshControl())
+//    }()
     
-    private let feedLoader: FeedLoader
+    // OR
     
-    init(feedLoader: FeedLoader) {
-        self.feedLoader = feedLoader
+    public lazy var view: UIRefreshControl = binded(UIRefreshControl())
+    
+    private let viewModel: FeedViewModel
+    
+    init(viewModel: FeedViewModel) {
+        self.viewModel = viewModel
     }
     
-    // closure to send back data
-    var onRefresh: (([FeedImage]) -> Void)?
     
     @objc func refresh() {
-        view.beginRefreshing()
-        feedLoader.load { [weak self] result in
+        
+        viewModel.loadFeed()
+    }
+    
+    
+    // we can return the in this bind function, so we can chain the view creation with the binding
+    private func binded(_ view: UIRefreshControl) -> UIRefreshControl {
+        
+        viewModel.onChange = { [weak self] viewModel in
             
-            if let feed = try? result.get() {
-                self?.onRefresh?(feed)
+            // the onChange closure is the binding logic between the ViewModel and the view
+            if viewModel.isLoading {
+                self?.view.beginRefreshing()
+            } else {
+                self?.view.endRefreshing()
             }
             
-            self?.view.endRefreshing()
         }
-
+        
+        view.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return view
     }
 }
