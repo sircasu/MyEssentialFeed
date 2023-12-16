@@ -38,10 +38,10 @@ public final class FeedRefreshViewController: NSObject {
     // we can return the in this bind function, so we can chain the view creation with the binding
     private func binded(_ view: UIRefreshControl) -> UIRefreshControl {
         
-        viewModel.onChange = { [weak self] viewModel in
-            
+        viewModel.onLoadingStateChange = { [weak self] isLoading in
+ 
             // the onChange closure is the binding logic between the ViewModel and the view
-            if viewModel.isLoading {
+            if isLoading {
                 self?.view.beginRefreshing()
             } else {
                 self?.view.endRefreshing()
