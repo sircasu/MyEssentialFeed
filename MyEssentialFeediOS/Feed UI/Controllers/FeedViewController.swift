@@ -14,7 +14,6 @@
 //So on iOS 15+, if we cancel any resource loading on didEndDisplayingCell, we must load/reload those resources on willDisplayCell.
 
 import UIKit
-import MyEssentialFeed
 
 
 public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching {
