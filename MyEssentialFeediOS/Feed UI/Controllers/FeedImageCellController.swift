@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import MyEssentialFeed
 
 
 /// The idea is to have a controller per cell
