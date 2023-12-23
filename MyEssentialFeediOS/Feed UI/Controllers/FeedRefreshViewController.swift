@@ -8,23 +8,27 @@
 import UIKit
 
 
-/// Controller to manage the FeedLoader state and update the UIResfreshControl.
-/// It needs to inherits form NSObject because our view target action is based on old Objective-C APIs
+
+protocol FeedRefreshViewControllerDelegate {
+    func didRequestFeedRefresh()
+}
+
+
 public final class FeedRefreshViewController: NSObject, FeedLoadingView {
     
     
     public lazy var view: UIRefreshControl = loadView()
     
-    private let loadFeed: () -> Void
+    private let delegate: FeedRefreshViewControllerDelegate
     
-    init(loadFeed: @escaping() -> Void) {
-        self.loadFeed = loadFeed
+    init(delegate: FeedRefreshViewControllerDelegate) {
+        self.delegate = delegate
     }
     
     
     @objc func refresh() {
         
-        loadFeed()
+        delegate.didRequestFeedRefresh()
     }
     
     
