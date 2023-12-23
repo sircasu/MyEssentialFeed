@@ -330,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				858D8DEB2B2A5807003C8196 /* Feed Image Loader */,
+				858110F32B3752B10037F3BA /* Feed Presentation */,
 				858D8DEE2B2A58B3003C8196 /* Feed UI */,
 			);
 			path = MyEssentialFeediOS;
@@ -445,13 +446,13 @@
 			path = MyEssentialFeedCacheIntegrationTests;
 			sourceTree = "<group>";
 		};
-		858110EE2B2E11B90037F3BA /* Models */ = {
+		858110F32B3752B10037F3BA /* Feed Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				858110EF2B2E11CD0037F3BA /* FeedViewModel.swift */,
 				858110F12B317A310037F3BA /* FeedImageViewModel.swift */,
 			);
-			path = Models;
+			path = "Feed Presentation";
 			sourceTree = "<group>";
 		};
 		858D8DEB2B2A5807003C8196 /* Feed Image Loader */ = {
@@ -466,7 +467,6 @@
 			isa = PBXGroup;
 			children = (
 				85A5B7BB2B2AE783007F3A63 /* Composers */,
-				858110EE2B2E11B90037F3BA /* Models */,
 				858D8DEF2B2A58BD003C8196 /* Controllers */,
 				858D8DF02B2A58CE003C8196 /* Views */,
 			);
