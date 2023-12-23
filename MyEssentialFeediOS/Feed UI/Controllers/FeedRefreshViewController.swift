@@ -10,45 +10,39 @@ import UIKit
 
 /// Controller to manage the FeedLoader state and update the UIResfreshControl.
 /// It needs to inherits form NSObject because our view target action is based on old Objective-C APIs
-public final class FeedRefreshViewController: NSObject {
+public final class FeedRefreshViewController: NSObject, FeedLoadingView {
     
-//    public lazy var view: UIRefreshControl = {
-////        let view = UIRefreshControl()
-////        return bind(view)
-//        return bind(UIRefreshControl())
-//    }()
     
-    // OR
+    public lazy var view: UIRefreshControl = loadView()
     
-    public lazy var view: UIRefreshControl = binded(UIRefreshControl())
+    private let presenter: FeedPresenter
     
-    private let viewModel: FeedViewModel
     
-    init(viewModel: FeedViewModel) {
-        self.viewModel = viewModel
+    init(presenter: FeedPresenter) {
+        self.presenter = presenter
     }
     
     
     @objc func refresh() {
         
-        viewModel.loadFeed()
+        presenter.loadFeed()
+    }
+    
+    
+    func display(isLoading: Bool) {
+        
+        if isLoading {
+            view.beginRefreshing()
+        } else {
+           view.endRefreshing()
+        }
     }
     
     
     // we can return the in this bind function, so we can chain the view creation with the binding
-    private func binded(_ view: UIRefreshControl) -> UIRefreshControl {
-        
-        viewModel.onLoadingStateChange = { [weak self] isLoading in
- 
-            // the onChange closure is the binding logic between the ViewModel and the view
-            if isLoading {
-                self?.view.beginRefreshing()
-            } else {
-                self?.view.endRefreshing()
-            }
-            
-        }
-        
+    private func loadView() -> UIRefreshControl {
+    
+        let view = UIRefreshControl()
         view.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return view
     }
