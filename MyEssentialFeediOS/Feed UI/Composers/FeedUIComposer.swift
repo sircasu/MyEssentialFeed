@@ -15,7 +15,7 @@ public final class FeedUIComposer {
     public static func feedComposedWith(feedLoader: FeedLoader, imageLoader: FeedImageDataLoader) -> FeedViewController {
         
         let presenter = FeedPresenter(feedLoader: feedLoader)
-        let refreshController = FeedRefreshViewController(presenter: presenter)
+        let refreshController = FeedRefreshViewController(loadFeed: presenter.loadFeed)
         let feedController = FeedViewController(refreshController: refreshController)
         
         presenter.loadingView = WeakRefVirtualProxy(refreshController) // weakify with virtual proxy at the composition layer, in order to avoid  leaking implementation detail in the presenter
