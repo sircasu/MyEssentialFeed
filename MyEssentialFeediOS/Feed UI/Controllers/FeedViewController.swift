@@ -18,7 +18,7 @@ import UIKit
 
 public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching {
     
-    private var onViewIsAppearing: ((FeedViewController) -> Void)?
+    var onViewIsAppearing: ((FeedViewController) -> Void)?
     
     public var refreshController: FeedRefreshViewController?
     var tableModel = [FeedImageCellController]() {
@@ -26,12 +26,14 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
     }
 
     
+    
+    
     // convenience initializer becase we don't need any custom initialization (in this way we don't need to implement UIViewController's required initializer)
-    convenience init(refreshController: FeedRefreshViewController) {
-        self.init()
-        self.refreshController = refreshController
-
-    }
+//    convenience init(refreshController: FeedRefreshViewController) {
+//        self.init()
+//        self.refreshController = refreshController
+//
+//    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
