@@ -20,7 +20,8 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
     
     var onViewIsAppearing: ((FeedViewController) -> Void)?
     
-    public var refreshController: FeedRefreshViewController?
+    @IBOutlet public var refreshController: FeedRefreshViewController?
+    
     var tableModel = [FeedImageCellController]() {
         didSet { tableView.reloadData() }
     }
@@ -39,7 +40,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
         super.viewDidLoad()
         
 
-        refreshControl = refreshController?.view
+//        refreshControl = refreshController?.view
         
         
         onViewIsAppearing = { vc in // guarantee that load logic run only once, because othervise onViewIsAppearing could be called more than once

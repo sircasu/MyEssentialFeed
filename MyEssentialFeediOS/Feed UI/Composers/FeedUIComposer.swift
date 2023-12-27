@@ -15,12 +15,16 @@ public final class FeedUIComposer {
     public static func feedComposedWith(feedLoader: FeedLoader, imageLoader: FeedImageDataLoader) -> FeedViewController {
         
         let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: feedLoader)
-        let refreshController = FeedRefreshViewController(delegate: presentationAdapter)
+//        let refreshController = FeedRefreshViewController(delegate: presentationAdapter)
         
 //        let feedController = FeedViewController(refreshController: refreshController)
         let bundle = Bundle(for: FeedViewController.self)
         let storyboard = UIStoryboard(name: "Feed", bundle: bundle)
         let feedController = storyboard.instantiateInitialViewController() as! FeedViewController // in this case the force casting is safe, because if this casting fails it's a developer error, and our test are covering this behaviour
+        
+        let refreshController = feedController.refreshController!
+        refreshController.delegate = presentationAdapter
+        
         feedController.refreshController = refreshController
         
         // weakify with virtual proxy at the composition layer, in order to avoid  leaking implementation detail in the presenter
