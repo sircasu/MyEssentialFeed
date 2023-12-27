@@ -49,7 +49,6 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
         
         onViewIsAppearing = { vc in // guarantee that load logic run only once, because othervise onViewIsAppearing could be called more than once
             
-            vc.tableView.prefetchDataSource = self
             self.refresh()
             vc.onViewIsAppearing = nil
         }
