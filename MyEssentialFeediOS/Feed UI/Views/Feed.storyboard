@@ -133,19 +133,11 @@ Location</string>
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
-                            <action selector="refresh" destination="R4f-wo-o7X" eventType="valueChanged" id="E2L-ju-90A"/>
+                            <action selector="refresh" destination="VhG-Z9-Kyk" eventType="valueChanged" id="Wcv-BR-eZb"/>
                         </connections>
                     </refreshControl>
-                    <connections>
-                        <outlet property="refreshController" destination="R4f-wo-o7X" id="hmS-gR-p2p"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T6a-Lt-7tT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <customObject id="R4f-wo-o7X" customClass="FeedRefreshViewController" customModule="MyEssentialFeediOS" customModuleProvider="target">
-                    <connections>
-                        <outlet property="view" destination="GN6-BE-cf5" id="8lA-Ip-SVC"/>
-                    </connections>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="883.07692307692309" y="4.9763033175355451"/>
         </scene>

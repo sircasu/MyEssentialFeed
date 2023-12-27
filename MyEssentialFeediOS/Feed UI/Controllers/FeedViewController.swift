@@ -15,12 +15,16 @@
 
 import UIKit
 
+protocol FeedViewControllerDelegate {
+    func didRequestFeedRefresh()
+}
 
-public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching {
+
+public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, FeedLoadingView {
     
     var onViewIsAppearing: ((FeedViewController) -> Void)?
     
-    @IBOutlet public var refreshController: FeedRefreshViewController?
+    var delegate: FeedViewControllerDelegate?
     
     var tableModel = [FeedImageCellController]() {
         didSet { tableView.reloadData() }
@@ -46,7 +50,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
         onViewIsAppearing = { vc in // guarantee that load logic run only once, because othervise onViewIsAppearing could be called more than once
             
             vc.tableView.prefetchDataSource = self
-            vc.refreshController?.refresh()
+            self.refresh()
             vc.onViewIsAppearing = nil
         }
     }
@@ -55,6 +59,27 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
         super.viewIsAppearing(animated)
         
         onViewIsAppearing?(self)
+    }
+    
+    
+    
+    
+    @IBAction private func refresh() {
+        
+        delegate?.didRequestFeedRefresh()
+    }
+    
+    
+    
+    
+    
+    func display(_ viewModel: FeedLoadingViewModel) {
+        
+        if viewModel.isLoading {
+            refreshControl?.beginRefreshing()
+        } else {
+            refreshControl?.endRefreshing()
+        }
     }
     
     
