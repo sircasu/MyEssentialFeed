@@ -23,6 +23,7 @@ public final class FeedUIComposer {
         let feedController = storyboard.instantiateInitialViewController() as! FeedViewController // in this case the force casting is safe, because if this casting fails it's a developer error, and our test are covering this behaviour
         
         feedController.delegate = presentationAdapter
+        feedController.title = FeedPresenter.title
                 
         // weakify with virtual proxy at the composition layer, in order to avoid  leaking implementation detail in the presenter
         presentationAdapter.presenter = FeedPresenter(feedView: FeedViewAdapter(controller: feedController, imageLoader: imageLoader), loadingView: WeakRefVirtualProxy(feedController))
