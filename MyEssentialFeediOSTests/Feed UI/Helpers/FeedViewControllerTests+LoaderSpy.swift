@@ -10,7 +10,7 @@ import MyEssentialFeed
 import MyEssentialFeediOS
 
 
-extension FeedViewControllerTests {
+extension FeedUIIntegrationTests {
     
     class LoaderSpy: FeedLoader, FeedImageDataLoader {
 

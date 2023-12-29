@@ -10,7 +10,7 @@ import MyEssentialFeed
 import MyEssentialFeediOS
 
 
-extension FeedViewControllerTests {
+extension FeedUIIntegrationTests {
     
     func assertThat(_ sut: FeedViewController, isRendering feed: [FeedImage], file: StaticString = #file, line: UInt = #line) {
         
