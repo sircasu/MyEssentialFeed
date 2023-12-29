@@ -5,6 +5,7 @@
 //  Created by Matteo Casu on 23/12/23.
 //
 
+import Foundation
 import MyEssentialFeed
 
 
@@ -31,7 +32,10 @@ final class FeedPresenter {
     
     
     static var title: String {
-        return "My Feed"
+        return NSLocalizedString("FEED_VIEW_TITLE", 
+                                 tableName: "Feed",
+                                 bundle: Bundle(for: FeedPresenter.self),
+                                 comment: "Title for the feed view")
     }
     
 
