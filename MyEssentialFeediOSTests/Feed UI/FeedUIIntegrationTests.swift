@@ -343,6 +343,27 @@ final class FeedUIIntegrationTests: XCTestCase {
     }
     
     
+    
+    func test_loadImageDataCompletion_dispatchesFromBackgroundToMainThread() {
+        
+        let (sut, loader) = makeSUT()
+        
+        sut.simulateAppearance()
+        loader.completeFeedLoading(with: [makeImage()])
+        _ = sut.simulateFeedImageViewVisible(at: 0)
+        
+        let exp = expectation(description: "Wait for background queue work")
+        DispatchQueue.global().async {
+            loader.completeImageLoading(with: self.anyImageData(), at: 0)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+        
+    }
+    
+    
+    
     // MARK: - Helpers
     
     
@@ -354,8 +375,6 @@ final class FeedUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
     }
-    
-    
 
 
     
