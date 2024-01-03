@@ -19,7 +19,7 @@ public final class FeedUIComposer {
         
 //        let feedController = FeedViewController(refreshController: refreshController)
         
-        let feedController = FeedViewController.makeWith(delegate: presentationAdapter, title: FeedPresenter.title)
+        let feedController = makeFeedViewController(delegate: presentationAdapter, title: FeedPresenter.title)
                 
         // weakify with virtual proxy at the composition layer, in order to avoid  leaking implementation detail in the presenter
         presentationAdapter.presenter = FeedPresenter(feedView: FeedViewAdapter(controller: feedController, imageLoader: MainQueueDispatchDecorator(decoratee:imageLoader)), loadingView: WeakRefVirtualProxy(feedController))
@@ -27,15 +27,7 @@ public final class FeedUIComposer {
         return feedController
     }
     
-}
-
-
-
-
-
-// factory method
-private extension FeedViewController {
-    static func makeWith(delegate: FeedViewControllerDelegate, title: String) -> FeedViewController {
+    private static func makeFeedViewController(delegate: FeedViewControllerDelegate, title: String) -> FeedViewController {
         
         let bundle = Bundle(for: FeedViewController.self)
         let storyboard = UIStoryboard(name: "Feed", bundle: bundle)
@@ -46,5 +38,6 @@ private extension FeedViewController {
         
         return feedController
     }
-}
 
+    
+}
