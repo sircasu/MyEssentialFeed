@@ -364,6 +364,15 @@ final class FeedUIIntegrationTests: XCTestCase {
     
     
     
+    func test_errorView_doesNotRenderErrorOnLoad() {
+        
+        let (sut, _) = makeSUT()
+        
+        sut.simulateAppearance()
+        
+        XCTAssertEqual(sut.errorMessage, nil)
+    }
+    
     // MARK: - Helpers
     
     
