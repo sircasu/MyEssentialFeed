@@ -14,6 +14,7 @@
 //So on iOS 15+, if we cancel any resource loading on didEndDisplayingCell, we must load/reload those resources on willDisplayCell.
 
 import UIKit
+import MyEssentialFeed
 
 protocol FeedViewControllerDelegate {
     func didRequestFeedRefresh()
@@ -76,13 +77,13 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
     
     
     
-    func display(_ viewModel: FeedLoadingViewModel) {
+    public func display(_ viewModel: FeedLoadingViewModel) {
         
         refreshControl?.update(isRefreshing: viewModel.isLoading)
     }
     
     
-    func display(_ viewModel: FeedErrorViewModel) {
+    public func display(_ viewModel: FeedErrorViewModel) {
         errorView?.message = viewModel.message
     }
     
