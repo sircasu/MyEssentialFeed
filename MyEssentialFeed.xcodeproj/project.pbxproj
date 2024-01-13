@@ -293,6 +293,7 @@
 				854410382ADAF0D800F6A68D /* CI_macOS.xctestplan */,
 				854CDA932AD9C1AC000CC9EC /* MyEssentialFeed.xctestplan */,
 				8513C16E2ACE8ECD0095989C /* MyEssentialFeed */,
+				8513C1782ACE8ECD0095989C /* MyEssentialFeedTests */,
 				854CDA992ADAE1E0000CC9EC /* MyEssentialFeedAPIEndToEndTests */,
 				85776FC02B020961007AF2F0 /* MyEssentialFeedCacheIntegrationTests */,
 				8525F2D02B0FD08C00BD7CCA /* MyEssentialFeediOS */,
@@ -445,7 +446,6 @@
 				857240032B51DAD10033CDD3 /* FeedImagePresenter.swift */,
 				857240052B51DB7D0033CDD3 /* FeedImageViewModel.swift */,
 				85723FEE2B51BD980033CDD3 /* Feed.strings */,
-				8513C1782ACE8ECD0095989C /* MyEssentialFeedTests */,
 			);
 			path = "Feed Presentation";
 			sourceTree = "<group>";
