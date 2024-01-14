@@ -1,5 +1,5 @@
 //
-//  RemoteFeedImageDataLoaderTests.swift
+//  LoadFeedImageDataFromRemoteUseCaseTests.swift
 //  MyEssentialFeedTests
 //
 //  Created by Matteo Casu on 13/01/24.
@@ -9,7 +9,7 @@ import XCTest
 import MyEssentialFeed
 
 
-class RemoteFeedImageDataLoaderTests: XCTestCase {
+class LoadFeedImageDataFromRemoteUseCaseTests: XCTestCase {
     
     
     func test_init_dowsNotPerformAnyURLRequest() {
