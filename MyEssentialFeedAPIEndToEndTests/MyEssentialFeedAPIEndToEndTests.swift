@@ -11,9 +11,7 @@ import MyEssentialFeed
 final class MyEssentialFeedAPIEndToEndTests: XCTestCase {
 
     func test_endToEndTestServerGETFeedResult_matchesFixedTestAccountData() {
-        
-        
-        
+       
         switch getFeedResult() {
         case let .success(imageFeed):
             XCTAssertEqual(imageFeed.count, 8, "Expected 8 images in the test account image feed")
@@ -33,6 +31,20 @@ final class MyEssentialFeedAPIEndToEndTests: XCTestCase {
         default:
             XCTFail("Expected successful feed result, got no result instead")
 
+        }
+    }
+    
+    
+    func test_endToEndTestServerGETFeedImageDataResult_matchesFixedTestAccountData() {
+        switch getFeedImageDataResult() {
+        case let .success(data)?:
+            XCTAssertFalse(data.isEmpty, "Expected non-empty image data")
+
+        case let .failure(error)?:
+            XCTFail("Expected successful image data result, got \(error) instead")
+
+        default:
+            XCTFail("Expected successful image data result, got no result instead")
         }
     }
     
@@ -60,6 +72,27 @@ final class MyEssentialFeedAPIEndToEndTests: XCTestCase {
         wait(for: [exp], timeout: 10.0)
         return receivedResult
     }
+    
+    
+    private func getFeedImageDataResult(file: StaticString = #file, line: UInt = #line) -> FeedImageDataLoader.Result? {
+        let testServerURL = URL(string: "https://essentialdeveloper.com/feed-case-study/test-api/feed/73A7F70C-75DA-4C2E-B5A3-EED40DC53AA6/image")!
+        let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+        let loader = RemoteFeedImageDataLoader(client: client)
+        trackForMemoryLeaks(client, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
+
+        let exp = expectation(description: "Wait for load completion")
+
+        var receivedResult: FeedImageDataLoader.Result?
+        _ = loader.loadImageData(from: testServerURL) { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 5.0)
+
+        return receivedResult
+    }
+    
     
     private func expectedImage(at index: Int) -> FeedImage {
         
