@@ -76,7 +76,6 @@ final class MyEssentialFeedCacheIntegrationTests: XCTestCase {
         let feedLoader = makeFeedLoader()
         let image = uniqueImage()
         let dataToSave = anyData()
-
         save([image], with: feedLoader)
         save(dataToSave, for: image.url, with: imageLoaderToPerformSave)
 
@@ -90,7 +89,7 @@ final class MyEssentialFeedCacheIntegrationTests: XCTestCase {
     private func makeFeedLoader(file: StaticString = #file, line: UInt = #line) -> LocalFeedLoader {
         
         let storeURL = testSpecificStoreURL()
-        let store = try! CodableFeedStore(storeURL: storeURL)
+        let store = try! CoreDataFeedStore(storeURL: storeURL)
         let sut = LocalFeedLoader(store: store, currentDate: Date.init)
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
