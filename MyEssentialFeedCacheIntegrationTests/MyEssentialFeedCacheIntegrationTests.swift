@@ -24,48 +24,39 @@ final class MyEssentialFeedCacheIntegrationTests: XCTestCase {
     
     
     
-    func test_load_deliversNoItemsOnEmptyCache() {
-        
-        let sut = makeFeedLoader()
-        
-        expect(sut, toLoad: [])
-        
+    func test_loadFeed_deliversNoItemsOnEmptyCache() {
+        let feedLoader = makeFeedLoader()
+
+        expect(feedLoader, toLoad: [])
     }
     
-    func test_load_deliversItemsSavedOnASeparateInstance() {
+    
+    func test_loadFeed_deliversItemsSavedOnASeparateInstance() {
         
-        let sutToPerformSave = makeFeedLoader()
-        let sutToPerformLoad = makeFeedLoader()
+        let feedLoaderToPerformSave = makeFeedLoader()
+        let feedLoaderToPerformLoad = makeFeedLoader()
+        
         let feed = uniqueImageFeed().models
         
-        let saveExp = expectation(description: "Wait for save completion")
-        sutToPerformSave.save(feed) { result in
-            
-            if case let Result.failure(error) = result {
-                XCTAssertNil(error, "Expected to save feed successfully")
-            }
-            saveExp.fulfill()
-        }
-        wait(for: [saveExp], timeout: 1.0)
-        
-        expect(sutToPerformLoad, toLoad: feed)
+        save(feed, with: feedLoaderToPerformSave)
 
+        expect(feedLoaderToPerformLoad, toLoad: feed)
     }
     
     
-    func test_save_overridesItemsSavedOnASeparateInstance() {
+    func test_saveFeed_overridesItemsSavedOnASeparateInstance() {
         
-        let sutToPerformFirstSave = makeFeedLoader()
-        let sutToPerformLastSave = makeFeedLoader()
-        let sutToPerformLoad = makeFeedLoader()
+        let feedLoaderToPerformFirstSave = makeFeedLoader()
+        let feedLoaderToPerformLastSave = makeFeedLoader()
+        let feedLoaderToPerformLoad = makeFeedLoader()
+        
         let firstFeed = uniqueImageFeed().models
         let latestFeed = uniqueImageFeed().models
         
-        save(firstFeed, with: sutToPerformFirstSave)
-        save(latestFeed, with: sutToPerformLastSave)
+        save(firstFeed, with: feedLoaderToPerformFirstSave)
+        save(latestFeed, with: feedLoaderToPerformLastSave)
         
-    
-        expect(sutToPerformLoad, toLoad: latestFeed)
+        expect(feedLoaderToPerformLoad, toLoad: latestFeed)
     }
     
     
