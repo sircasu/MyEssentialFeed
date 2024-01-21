@@ -68,6 +68,7 @@
 		857241372B5D930A0033CDD3 /* FeedImageDataLoaderWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderWithFallbackComposite.swift; sourceTree = "<group>"; };
 		8572413A2B5D93700033CDD3 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		8572413C2B5D93C40033CDD3 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
+		8572413E2B5D96180033CDD3 /* EssentialAppTest.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = EssentialAppTest.xctestplan; path = ../EssentialAppTest.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +94,7 @@
 		857240ED2B5D87080033CDD3 = {
 			isa = PBXGroup;
 			children = (
+				8572413E2B5D96180033CDD3 /* EssentialAppTest.xctestplan */,
 				857240F82B5D87080033CDD3 /* EssentialApp */,
 				8572410F2B5D870A0033CDD3 /* EssentialAppTests */,
 				857240F72B5D87080033CDD3 /* Products */,
