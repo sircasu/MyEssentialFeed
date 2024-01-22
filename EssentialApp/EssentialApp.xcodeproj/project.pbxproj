@@ -23,6 +23,7 @@
 		857241382B5D930A0033CDD3 /* FeedImageDataLoaderWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857241372B5D930A0033CDD3 /* FeedImageDataLoaderWithFallbackComposite.swift */; };
 		8572413B2B5D93700033CDD3 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572413A2B5D93700033CDD3 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8572413D2B5D93C40033CDD3 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572413C2B5D93C40033CDD3 /* SharedTestHelpers.swift */; };
+		857241402B5ED2FE0033CDD3 /* FeedLoaderCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572413F2B5ED2FE0033CDD3 /* FeedLoaderCacheDecoratorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		8572413A2B5D93700033CDD3 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		8572413C2B5D93C40033CDD3 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		8572413E2B5D96180033CDD3 /* EssentialAppTest.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = EssentialAppTest.xctestplan; path = ../EssentialAppTest.xctestplan; sourceTree = "<group>"; };
+		8572413F2B5ED2FE0033CDD3 /* FeedLoaderCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderCacheDecoratorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				857241392B5D93620033CDD3 /* Helpers */,
 				857241312B5D8B280033CDD3 /* FeedLoaderWithFallbackComposite.swift */,
 				857241352B5D90410033CDD3 /* FeedImageDataLoaderWithFallbackCompositeTests.swift */,
+				8572413F2B5ED2FE0033CDD3 /* FeedLoaderCacheDecoratorTests.swift */,
 			);
 			path = EssentialAppTests;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				8572413D2B5D93C40033CDD3 /* SharedTestHelpers.swift in Sources */,
 				857241362B5D90410033CDD3 /* FeedImageDataLoaderWithFallbackCompositeTests.swift in Sources */,
 				857241322B5D8B280033CDD3 /* FeedLoaderWithFallbackComposite.swift in Sources */,
+				857241402B5ED2FE0033CDD3 /* FeedLoaderCacheDecoratorTests.swift in Sources */,
 				8572413B2B5D93700033CDD3 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
