@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8558B13B2B5FA02A000DF25F /* XCTestCase+FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8558B13A2B5FA02A000DF25F /* XCTestCase+FeedLoader.swift */; };
 		857240FA2B5D87080033CDD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857240F92B5D87080033CDD3 /* AppDelegate.swift */; };
 		857240FC2B5D87080033CDD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857240FB2B5D87080033CDD3 /* SceneDelegate.swift */; };
 		857240FE2B5D87080033CDD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857240FD2B5D87080033CDD3 /* ViewController.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8558B13A2B5FA02A000DF25F /* XCTestCase+FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FeedLoader.swift"; sourceTree = "<group>"; };
 		857240F62B5D87080033CDD3 /* EssentialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857240F92B5D87080033CDD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		857240FB2B5D87080033CDD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				8572413A2B5D93700033CDD3 /* XCTestCase+MemoryLeakTracking.swift */,
 				8572413C2B5D93C40033CDD3 /* SharedTestHelpers.swift */,
 				857241412B5F9DE20033CDD3 /* FeedLoaderStub.swift */,
+				8558B13A2B5FA02A000DF25F /* XCTestCase+FeedLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8572413D2B5D93C40033CDD3 /* SharedTestHelpers.swift in Sources */,
+				8558B13B2B5FA02A000DF25F /* XCTestCase+FeedLoader.swift in Sources */,
 				857241362B5D90410033CDD3 /* FeedImageDataLoaderWithFallbackCompositeTests.swift in Sources */,
 				857241322B5D8B280033CDD3 /* FeedLoaderWithFallbackComposite.swift in Sources */,
 				857241402B5ED2FE0033CDD3 /* FeedLoaderCacheDecoratorTests.swift in Sources */,
