@@ -26,6 +26,7 @@
 		8572413D2B5D93C40033CDD3 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572413C2B5D93C40033CDD3 /* SharedTestHelpers.swift */; };
 		857241402B5ED2FE0033CDD3 /* FeedLoaderCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572413F2B5ED2FE0033CDD3 /* FeedLoaderCacheDecoratorTests.swift */; };
 		857241422B5F9DE20033CDD3 /* FeedLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857241412B5F9DE20033CDD3 /* FeedLoaderStub.swift */; };
+		85E473842B6183C5003B17B0 /* FeedCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E473832B6183C5003B17B0 /* FeedCacheDecorator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		8572413E2B5D96180033CDD3 /* EssentialAppTest.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = EssentialAppTest.xctestplan; path = ../EssentialAppTest.xctestplan; sourceTree = "<group>"; };
 		8572413F2B5ED2FE0033CDD3 /* FeedLoaderCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		857241412B5F9DE20033CDD3 /* FeedLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderStub.swift; sourceTree = "<group>"; };
+		85E473832B6183C5003B17B0 /* FeedCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCacheDecorator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				857241022B5D87090033CDD3 /* Assets.xcassets */,
 				857241042B5D87090033CDD3 /* LaunchScreen.storyboard */,
 				857241072B5D87090033CDD3 /* Info.plist */,
+				85E473832B6183C5003B17B0 /* FeedCacheDecorator.swift */,
 			);
 			path = EssentialApp;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				857240FA2B5D87080033CDD3 /* AppDelegate.swift in Sources */,
 				857241342B5D8FCB0033CDD3 /* FeedLoaderWithFallbackComposite.swift in Sources */,
 				857240FC2B5D87080033CDD3 /* SceneDelegate.swift in Sources */,
+				85E473842B6183C5003B17B0 /* FeedCacheDecorator.swift in Sources */,
 				857241382B5D930A0033CDD3 /* FeedImageDataLoaderWithFallbackComposite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
