@@ -29,47 +29,54 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let session = URLSession(configuration: .ephemeral)
         
-        let remoteClient = URLSessionHTTPClient(session: session)
+        let remoteClient = makeRemoteClient()
         let remoteFeedLoader = RemoteFeedLoader(url: remoteURL, client: remoteClient)
         let remoteImageLoader = RemoteFeedImageDataLoader(client: remoteClient)
+        
+        let localStoreURL = NSPersistentContainer
+            .defaultDirectoryURL()
+            .appendingPathComponent("feed-store.sqlite")
+
+        let localStore = try! CoreDataFeedStore(storeURL: localStoreURL)
+        let localFeedLoader = LocalFeedLoader(store: localStore, currentDate: Date.init)
+        let localImageLoader = LocalFeedImageDataLoader(store: localStore)
 
         window?.rootViewController = FeedUIComposer.feedComposedWith(
-            feedLoader: remoteFeedLoader,
-            imageLoader: remoteImageLoader)
+            feedLoader: FeedLoaderWithFallbackComposite(
+                primary: FeedLoaderCacheDecorator(
+                    decoratee: remoteFeedLoader, cache: localFeedLoader),
+                fallback: localFeedLoader),
+            imageLoader: FeedImageDataLoaderWithFallbackComposite(
+                primary: localImageLoader,
+                fallback: FeedImageDataLoaderCacheDecorator(
+                    decoratee: remoteImageLoader,
+                    cache: localImageLoader)))
+    }
+    
+    
+    private func makeRemoteClient() -> HTTPClient {
         
-        
-//        guard let _ = (scene as? UIWindowScene) else { return }
-//        
-//        
-//        let remoteURL = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
-//        
-//
-//        let remoteClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-//        let remoteFeedLoader = RemoteFeedLoader(url: remoteURL, client: remoteClient)
-//        let remoteImageLoader = RemoteFeedImageDataLoader(client: remoteClient)
-//        
-//        
-//        let localStoreURL = NSPersistentContainer
-//            .defaultDirectoryURL()
-//            .appendingPathComponent("feed-store.sqlite")
-//        
-//        let localStore = try! CoreDataFeedStore(storeURL: localStoreURL)
-//        let localFeedLoader = LocalFeedLoader(store: localStore, currentDate: Date.init)
-//        let localImageLoader = LocalFeedImageDataLoader(store: localStore)
-//        
-//        
-//        window?.rootViewController = FeedUIComposer.feedComposedWith(
-//            feedLoader: FeedLoaderWithFallbackComposite(
-//                primary: FeedLoaderCacheDecorator(
-//                    decoratee: remoteFeedLoader, cache: localFeedLoader),
-//                fallback: localFeedLoader),
-//            imageLoader: FeedImageDataLoaderWithFallbackComposite(
-//                primary: localImageLoader,
-//                fallback: FeedImageDataLoaderCacheDecorator(
-//                    decoratee: remoteImageLoader,
-//                    cache: localImageLoader)))
-        
-//        window?.rootViewController = FeedUIComposer.feedComposedWith(feedLoader: localFeedLoader, imageLoader: localImageLoader)
+        switch UserDefaults.standard.string(forKey: "connectivity") {
+        case "offline":
+            return AlwaysFailingHTTPClient()
+        default:
+            return URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+        }
     }
 }
 
+
+class AlwaysFailingHTTPClient: HTTPClient {
+    
+    private class Task: HTTPClientTask {
+        func cancel() {}
+    }
+    
+    func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> MyEssentialFeed.HTTPClientTask {
+        completion(.failure(NSError(domain: "offline", code: 0)))
+        return Task()
+    }
+    
+    
+    
+}

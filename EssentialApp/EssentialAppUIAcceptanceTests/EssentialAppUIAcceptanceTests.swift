@@ -31,4 +31,22 @@ final class EssentialAppUIAcceptanceTests: XCTestCase {
         XCTAssertTrue(firstImage.exists)
 
     }
+    
+    
+    func test_onLaunch_displaysCachedRemoteFeedWhenCustomerHasNoConnectivity() {
+        
+        let onlineApp = XCUIApplication()
+        onlineApp.launch()
+        
+        let offlineApp = XCUIApplication()
+        offlineApp.launchArguments = ["-connectivity", "offline"]
+        offlineApp.launch()
+        
+        let cachedFeedCells = offlineApp.cells
+        XCTAssertEqual(cachedFeedCells.count, 22)
+        
+        let firstCachedImage = offlineApp.images.firstMatch
+        XCTAssertTrue(firstCachedImage.exists)
+    }
+
 }
