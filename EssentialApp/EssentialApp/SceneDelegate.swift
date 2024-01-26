@@ -36,6 +36,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let localStoreURL = NSPersistentContainer
             .defaultDirectoryURL()
             .appendingPathComponent("feed-store.sqlite")
+        
+        
+        if CommandLine.arguments.contains("-reset") { // different way to get launch argument (instead of UserDefaults.standard that care about value)
+            try? FileManager.default.removeItem(at: localStoreURL)
+        }
+        
 
         let localStore = try! CoreDataFeedStore(storeURL: localStoreURL)
         let localFeedLoader = LocalFeedLoader(store: localStore, currentDate: Date.init)
