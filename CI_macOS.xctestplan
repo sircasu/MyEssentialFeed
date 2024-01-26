@@ -62,6 +62,20 @@
         "identifier" : "8572410B2B5D870A0033CDD3",
         "name" : "EssentialAppTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:MyEssentialFeed.xcodeproj",
+        "identifier" : "8525F2D52B0FD08C00BD7CCA",
+        "name" : "MyEssentialFeediOSTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:EssentialApp\/EssentialApp.xcodeproj",
+        "identifier" : "85E473922B6446A7003B17B0",
+        "name" : "EssentialAppUIAcceptanceTests"
+      }
     }
   ],
   "version" : 1
