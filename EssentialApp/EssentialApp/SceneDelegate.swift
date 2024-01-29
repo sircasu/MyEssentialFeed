@@ -24,7 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .appendingPathComponent("feed-store.sqlite"))
     }()
 
-    
+    private lazy var localFeedLoader: LocalFeedLoader = {
+        LocalFeedLoader(store: store, currentDate: Date.init)
+    }()
     
     
     convenience init(httpClient: HTTPClient, store: FeedStore & FeedImageDataStore) {
@@ -62,6 +64,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 fallback: FeedImageDataLoaderCacheDecorator(
                     decoratee: remoteImageLoader,
                     cache: localImageLoader))))
+    }
+    
+
+    func sceneWillResignActive(_ scene: UIScene) {
+        
+        localFeedLoader.validateCache { _ in }
     }
 
 }
