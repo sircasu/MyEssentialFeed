@@ -48,7 +48,6 @@
 		85E473882B618635003B17B0 /* FeedImageDataLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E473872B618635003B17B0 /* FeedImageDataLoaderSpy.swift */; };
 		85E4738A2B61884B003B17B0 /* XCTestCase+FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E473892B61884B003B17B0 /* XCTestCase+FeedImageDataLoader.swift */; };
 		85E4738E2B618FFF003B17B0 /* FeedImageDataLoaderCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4738D2B618FFF003B17B0 /* FeedImageDataLoaderCacheDecorator.swift */; };
-		85E4739F2B64607E003B17B0 /* DebuggingSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4739E2B64607E003B17B0 /* DebuggingSceneDelegate.swift */; };
 		85E473A12B655FD6003B17B0 /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E473A02B655FD6003B17B0 /* SceneDelegateTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,7 +120,6 @@
 		85E473872B618635003B17B0 /* FeedImageDataLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderSpy.swift; sourceTree = "<group>"; };
 		85E473892B61884B003B17B0 /* XCTestCase+FeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FeedImageDataLoader.swift"; sourceTree = "<group>"; };
 		85E4738D2B618FFF003B17B0 /* FeedImageDataLoaderCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderCacheDecorator.swift; sourceTree = "<group>"; };
-		85E4739E2B64607E003B17B0 /* DebuggingSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingSceneDelegate.swift; sourceTree = "<group>"; };
 		85E473A02B655FD6003B17B0 /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,7 +168,6 @@
 			children = (
 				857240F92B5D87080033CDD3 /* AppDelegate.swift */,
 				857240FB2B5D87080033CDD3 /* SceneDelegate.swift */,
-				85E4739E2B64607E003B17B0 /* DebuggingSceneDelegate.swift */,
 				857240FD2B5D87080033CDD3 /* ViewController.swift */,
 				857241332B5D8FCB0033CDD3 /* FeedLoaderWithFallbackComposite.swift */,
 				857241372B5D930A0033CDD3 /* FeedImageDataLoaderWithFallbackComposite.swift */,
@@ -346,7 +343,6 @@
 				857241342B5D8FCB0033CDD3 /* FeedLoaderWithFallbackComposite.swift in Sources */,
 				857240FC2B5D87080033CDD3 /* SceneDelegate.swift in Sources */,
 				850E249A2B6565BB0000D497 /* FeedLoaderPresentationAdapter.swift in Sources */,
-				85E4739F2B64607E003B17B0 /* DebuggingSceneDelegate.swift in Sources */,
 				850E249C2B6565BB0000D497 /* MainQueueDispatchDecorator.swift in Sources */,
 				85E473842B6183C5003B17B0 /* FeedCacheDecorator.swift in Sources */,
 				857241382B5D930A0033CDD3 /* FeedImageDataLoaderWithFallbackComposite.swift in Sources */,
