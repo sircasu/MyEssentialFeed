@@ -406,9 +406,9 @@ final class FeedUIIntegrationTests: XCTestCase {
 
 
 
-private extension FeedViewController {
+extension FeedViewController {
     
-    func simulateAppearance() {
+    public func simulateAppearance() {
         
         if !isViewLoaded {
             loadViewIfNeeded()
