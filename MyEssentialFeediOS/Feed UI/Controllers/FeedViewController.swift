@@ -58,6 +58,12 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
         }
     }
     
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.sizeTableHeaderToFit()
+    }
+    
     override public func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         
