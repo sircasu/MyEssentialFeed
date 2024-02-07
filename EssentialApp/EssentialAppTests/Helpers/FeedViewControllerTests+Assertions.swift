@@ -14,6 +14,11 @@ extension FeedUIIntegrationTests {
     
     func assertThat(_ sut: FeedViewController, isRendering feed: [FeedImage], file: StaticString = #file, line: UInt = #line) {
         
+        // force table view to layout, because `reloadData` does not force an immediate layout update (for performance reasons)
+        // so `didEndDisplayingCell` will only be called in the next layout cycle
+        sut.tableView.layoutIfNeeded()
+        RunLoop.main.run(until: Date())
+        
         guard sut.numberOfRenderedFeedImageViews() == feed.count else {
             return XCTFail("Expected \(feed.count) images, got \(sut.numberOfRenderedFeedImageViews()) intead.", file: file, line: line)
         }
