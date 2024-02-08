@@ -37,6 +37,7 @@
 		85E473882B618635003B17B0 /* FeedImageDataLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E473872B618635003B17B0 /* FeedImageDataLoaderSpy.swift */; };
 		85E4738A2B61884B003B17B0 /* XCTestCase+FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E473892B61884B003B17B0 /* XCTestCase+FeedImageDataLoader.swift */; };
 		85E473A12B655FD6003B17B0 /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E473A02B655FD6003B17B0 /* SceneDelegateTests.swift */; };
+		85F39D752B754F3A009DA170 /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F39D742B754F3A009DA170 /* CombineHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		85E473872B618635003B17B0 /* FeedImageDataLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderSpy.swift; sourceTree = "<group>"; };
 		85E473892B61884B003B17B0 /* XCTestCase+FeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FeedImageDataLoader.swift"; sourceTree = "<group>"; };
 		85E473A02B655FD6003B17B0 /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
+		85F39D742B754F3A009DA170 /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			children = (
 				857240F92B5D87080033CDD3 /* AppDelegate.swift */,
 				857240FB2B5D87080033CDD3 /* SceneDelegate.swift */,
+				85F39D742B754F3A009DA170 /* CombineHelpers.swift */,
 				857240FD2B5D87080033CDD3 /* ViewController.swift */,
 				850E24942B6565BA0000D497 /* FeedUIComposer.swift */,
 				850E24952B6565BA0000D497 /* WeakRefVirtualProxy.swift */,
@@ -301,6 +304,7 @@
 			files = (
 				857240FE2B5D87080033CDD3 /* ViewController.swift in Sources */,
 				850E24972B6565BB0000D497 /* FeedUIComposer.swift in Sources */,
+				85F39D752B754F3A009DA170 /* CombineHelpers.swift in Sources */,
 				850E24982B6565BB0000D497 /* WeakRefVirtualProxy.swift in Sources */,
 				857240FA2B5D87080033CDD3 /* AppDelegate.swift in Sources */,
 				857240FC2B5D87080033CDD3 /* SceneDelegate.swift in Sources */,
