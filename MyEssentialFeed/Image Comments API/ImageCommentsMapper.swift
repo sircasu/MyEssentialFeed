@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 final class ImageCommentsMapper {
     
     private struct Root: Decodable {
