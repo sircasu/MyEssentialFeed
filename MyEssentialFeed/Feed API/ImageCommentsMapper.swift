@@ -9,7 +9,7 @@ import Foundation
 
 
 
-internal final class ImageCommentsMapper {
+final class ImageCommentsMapper {
     
     private struct Root: Decodable {
         let items: [RemoteFeedItem]
@@ -29,12 +29,19 @@ internal final class ImageCommentsMapper {
     }
     
     
-    internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> [RemoteFeedItem] {
+    static func map(_ data: Data, from response: HTTPURLResponse) throws -> [RemoteFeedItem] {
         
-        guard response.isOK, let root = try? JSONDecoder().decode(Root.self, from: data) else {
+        guard isOk(response), let root = try? JSONDecoder().decode(Root.self, from: data) else {
             throw RemoteImageCommentsLoader.Error.invalidData
         }
 
         return root.items
+    }
+    
+    
+    private static func isOk(_ response: HTTPURLResponse) -> Bool {
+        
+        let acceptedStatusCode = 200...299
+        return acceptedStatusCode.contains(response.statusCode)
     }
 }
