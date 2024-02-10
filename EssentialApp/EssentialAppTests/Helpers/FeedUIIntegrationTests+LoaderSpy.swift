@@ -1,5 +1,5 @@
 //
-//  FeedViewControllerTests+LoaderSpy.swift
+//  FeedUIIntegrationTests+LoaderSpy.swift
 //  MyEssentialFeediOSTests
 //
 //  Created by Matteo Casu on 13/12/23.
@@ -8,31 +8,34 @@
 import Foundation
 import MyEssentialFeed
 import MyEssentialFeediOS
-
+import Combine
 
 extension FeedUIIntegrationTests {
     
-    class LoaderSpy: FeedLoader, FeedImageDataLoader {
+    class LoaderSpy: FeedImageDataLoader {
 
         // MARK: - FeedLoader
         
-        private var feedRequests = [(FeedLoader.Result) -> Void]() // completion
+        private var feedRequests = [PassthroughSubject<[FeedImage], Error>]() // capturing publisher
         
         var loadFeedCallCount: Int {
             return feedRequests.count
         }
-        
-        func load(completion: @escaping (FeedLoader.Result) -> Void) {
-            feedRequests.append(completion)
+
+        func loadPublisher() -> AnyPublisher<[FeedImage], Error> {
+            
+            let publisher = PassthroughSubject<[FeedImage], Error>()
+            feedRequests.append(publisher)
+            return publisher.eraseToAnyPublisher()
         }
         
         func completeFeedLoading(with feed: [FeedImage] = [], at index: Int = 0) {
-            feedRequests[index](.success(feed))
+            feedRequests[index].send(feed)
         }
         
         func completeFeedLoadingWithError(at index: Int = 0) {
             let error = NSError(domain: "an error", code: 0)
-            feedRequests[index](.failure(error))
+            feedRequests[index].send(completion: .failure(error))
         }
         
         
