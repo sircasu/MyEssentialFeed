@@ -21,7 +21,7 @@ public protocol FeedViewControllerDelegate {
 }
 
 
-public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, ResourceLoadingView, FeedErrorView {
+public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, ResourceLoadingView, ResourceErrorView {
 
     
     var onViewIsAppearing: ((FeedViewController) -> Void)?
@@ -94,7 +94,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
     }
     
     
-    public func display(_ viewModel: FeedErrorViewModel) {
+    public func display(_ viewModel: ResourceErrorViewModel) {
         errorView?.message = viewModel.message
     }
     
