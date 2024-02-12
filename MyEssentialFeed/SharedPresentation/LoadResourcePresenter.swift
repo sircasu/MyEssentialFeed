@@ -1,27 +1,14 @@
 //
-//  FeedPresenter.swift
+//  LoadResourcePresenter.swift
 //  MyEssentialFeed
 //
-//  Created by Matteo Casu on 12/01/24.
+//  Created by Matteo Casu on 12/02/24.
 //
 
 import Foundation
 
-
-public protocol FeedView {
-    func display(_ viewModel: FeedViewModel)
-}
-
-public protocol FeedLoadingView {
-    func display(_ viewModel: FeedLoadingViewModel)
-}
-
-public protocol FeedErrorView {
-    func display(_ viewModel: FeedErrorViewModel)
-}
-
-
-public final class FeedPresenter {
+public final class LoadResourcePresenter {
+    
     private let feedView: FeedView
     private let loadingView: FeedLoadingView
     private let errorView: FeedErrorView
