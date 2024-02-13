@@ -96,6 +96,9 @@
 		85E4738C2B618F54003B17B0 /* FeedImageDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4738B2B618F54003B17B0 /* FeedImageDataCache.swift */; };
 		85F248A92B4FD51300D2733E /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F248A82B4FD51300D2733E /* ErrorView.swift */; };
 		85F248AE2B5026C900D2733E /* UIRefreshControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F248AD2B5026C900D2733E /* UIRefreshControl+Helpers.swift */; };
+		85F367982B7BCD0F00DD1B82 /* ImageCommentsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F367972B7BCD0F00DD1B82 /* ImageCommentsPresenterTests.swift */; };
+		85F3679B2B7BCE7600DD1B82 /* ImageCommentsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F3679A2B7BCE7600DD1B82 /* ImageCommentsPresenter.swift */; };
+		85F3679D2B7BCF2C00DD1B82 /* ImageComments.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85F3679C2B7BCF2C00DD1B82 /* ImageComments.strings */; };
 		85F39D772B761D41009DA170 /* ImageCommentsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F39D762B761D41009DA170 /* ImageCommentsMapperTests.swift */; };
 		85F39D7B2B761FDB009DA170 /* ImageCommentsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F39D7A2B761FDB009DA170 /* ImageCommentsMapper.swift */; };
 		85F39D7E2B762880009DA170 /* ImageComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F39D7D2B762880009DA170 /* ImageComment.swift */; };
@@ -245,6 +248,9 @@
 		85E4738B2B618F54003B17B0 /* FeedImageDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataCache.swift; sourceTree = "<group>"; };
 		85F248A82B4FD51300D2733E /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		85F248AD2B5026C900D2733E /* UIRefreshControl+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Helpers.swift"; sourceTree = "<group>"; };
+		85F367972B7BCD0F00DD1B82 /* ImageCommentsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsPresenterTests.swift; sourceTree = "<group>"; };
+		85F3679A2B7BCE7600DD1B82 /* ImageCommentsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsPresenter.swift; sourceTree = "<group>"; };
+		85F3679C2B7BCF2C00DD1B82 /* ImageComments.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = ImageComments.strings; sourceTree = "<group>"; };
 		85F39D762B761D41009DA170 /* ImageCommentsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsMapperTests.swift; sourceTree = "<group>"; };
 		85F39D7A2B761FDB009DA170 /* ImageCommentsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsMapper.swift; sourceTree = "<group>"; };
 		85F39D7D2B762880009DA170 /* ImageComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageComment.swift; sourceTree = "<group>"; };
@@ -342,6 +348,7 @@
 				85F39D802B7634BD009DA170 /* Shared API Infra */,
 				85F39D7C2B76286D009DA170 /* Image Comments Feature */,
 				85F39D842B76369F009DA170 /* Image Comments API */,
+				85F367992B7BCE5A00DD1B82 /* Image Comments Presentation */,
 				8513C1882ACE91920095989C /* Feed Feature */,
 				8513C18B2AD05F1C0095989C /* Feed API */,
 				8537E9182AEA7A7900114370 /* Feed Cache */,
@@ -357,6 +364,7 @@
 				85F39D832B7635DF009DA170 /* Shared API Infra */,
 				8535657C2B7A13D400E7EC42 /* Shared Presentation */,
 				85F39D852B7636F8009DA170 /* Image Comments API */,
+				85F367962B7BCCDE00DD1B82 /* Image Comments Presentation */,
 				859DC1C42AD5255C008DFD8C /* Feed API */,
 				8537E9152AE817E700114370 /* Feed Cache */,
 				85F248AF2B51280F00D2733E /* Feed Presentation */,
@@ -638,6 +646,23 @@
 			path = "Feed Presentation";
 			sourceTree = "<group>";
 		};
+		85F367962B7BCCDE00DD1B82 /* Image Comments Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				85F367972B7BCD0F00DD1B82 /* ImageCommentsPresenterTests.swift */,
+			);
+			path = "Image Comments Presentation";
+			sourceTree = "<group>";
+		};
+		85F367992B7BCE5A00DD1B82 /* Image Comments Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				85F3679A2B7BCE7600DD1B82 /* ImageCommentsPresenter.swift */,
+				85F3679C2B7BCF2C00DD1B82 /* ImageComments.strings */,
+			);
+			path = "Image Comments Presentation";
+			sourceTree = "<group>";
+		};
 		85F39D7C2B76286D009DA170 /* Image Comments Feature */ = {
 			isa = PBXGroup;
 			children = (
@@ -882,6 +907,7 @@
 			files = (
 				85723FF32B51C0490033CDD3 /* Feed.strings in Resources */,
 				853565882B7A243A00E7EC42 /* Shared.strings in Resources */,
+				85F3679D2B7BCF2C00DD1B82 /* ImageComments.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -959,6 +985,7 @@
 				85DA273B2AD9A3E7002A62F4 /* URLSessionHTTPClient.swift in Sources */,
 				853565902B7A32B500E7EC42 /* ResourceLoadingView.swift in Sources */,
 				857240062B51DB7D0033CDD3 /* FeedImageViewModel.swift in Sources */,
+				85F3679B2B7BCE7600DD1B82 /* ImageCommentsPresenter.swift in Sources */,
 				85776FB22B01340D007AF2F0 /* ManagedCache.swift in Sources */,
 				857240172B55CBA30033CDD3 /* LocalFeedImageDataLoader.swift in Sources */,
 				85776F822AFE4F62007AF2F0 /* CoreDataFeedStore.swift in Sources */,
@@ -978,6 +1005,7 @@
 				85776F802AFE4AE2007AF2F0 /* CoreDataFeedStoreTests.swift in Sources */,
 				8572401F2B566ED00033CDD3 /* CoreDataFeedImageDataStoreTests.swift in Sources */,
 				8572401D2B5669430033CDD3 /* CacheFeedImageDataUseCaseTests.swift in Sources */,
+				85F367982B7BCD0F00DD1B82 /* ImageCommentsPresenterTests.swift in Sources */,
 				853ADEA32AF10AFC007FA902 /* FeedCacheTestHelpers.swift in Sources */,
 				8513C18A2AD04A9E0095989C /* FeedItemsMapperTest.swift in Sources */,
 				856B3F242AD865250079FA82 /* XCTestCase+MemoryLeakTrackingHelper.swift in Sources */,
