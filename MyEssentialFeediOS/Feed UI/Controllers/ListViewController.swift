@@ -1,5 +1,5 @@
 //
-//  FeedViewController.swift
+//  ListViewController.swift
 //  MyEssentialFeediOS
 //
 //  Created by Matteo Casu on 06/12/23.
@@ -27,10 +27,10 @@ public protocol CellController {
     func cancelLoad()
 }
 
-public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, ResourceLoadingView, ResourceErrorView {
+public final class ListViewController: UITableViewController, UITableViewDataSourcePrefetching, ResourceLoadingView, ResourceErrorView {
 
     
-    var onViewIsAppearing: ((FeedViewController) -> Void)?
+    var onViewIsAppearing: ((ListViewController) -> Void)?
     
     public var delegate: FeedViewControllerDelegate?
     
