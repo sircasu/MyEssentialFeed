@@ -14,7 +14,7 @@ public protocol FeedImageCellControllerDelegate {
 }
 
 /// The idea is to have a controller per cell
-public final class FeedImageCellController:  ResourceView, ResourceLoadingView, ResourceErrorView {
+public final class FeedImageCellController: CellController, ResourceView, ResourceLoadingView, ResourceErrorView {
     
     public typealias ResourceViewModel = UIImage
     private let viewModel: FeedImageViewModel
@@ -27,7 +27,7 @@ public final class FeedImageCellController:  ResourceView, ResourceLoadingView, 
         self.delegate = delegate
     }
     
-    func view(in tableView: UITableView) -> UITableViewCell {
+    public func view(in tableView: UITableView) -> UITableViewCell {
         cell = tableView.dequeueReusableCell()
         cell?.locationContainer.isHidden = !viewModel.hasLocation
         cell?.locationLabel.text = viewModel.location
@@ -42,11 +42,11 @@ public final class FeedImageCellController:  ResourceView, ResourceLoadingView, 
         return cell!
     }
     
-    func preload() {
+    public func preload() {
         delegate.didRequestImage()
     }
 
-    func cancelLoad() {
+    public func cancelLoad() {
         releaseCellForReuse()
         delegate.didCancelImageRequest()
     }
