@@ -37,7 +37,7 @@ extension XCTestCase {
 
 
 
-    private func record(snapshot: UIImage, named name: String, file: StaticString = #file, line: UInt = #line) {
+    public func record(snapshot: UIImage, named name: String, file: StaticString = #file, line: UInt = #line) {
         let snapshotURL = makeSnapshotURL(named: name, file: file)
         let snapshotData = makeSnapshotData(for: snapshot, file: file, line: line)
 
@@ -47,6 +47,9 @@ extension XCTestCase {
                 withIntermediateDirectories: true
             )
             try snapshotData?.write(to: snapshotURL)
+            // `record` generate a failure to reminde us that we need to revert to the `assert` function before proceed (a commit for example)
+            XCTFail("Record succeeded - use `assert` to compare that snapshot from now on.", file: file, line: line)
+
         } catch {
             XCTFail("Failed to record snapshot with error \(error)", file: file, line: line)
         }
