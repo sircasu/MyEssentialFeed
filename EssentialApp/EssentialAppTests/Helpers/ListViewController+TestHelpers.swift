@@ -1,5 +1,5 @@
 //
-//  FeedViewController+TestHelpers.swift
+//  ListViewController+TestHelpers.swift
 //  MyEssentialFeediOSTests
 //
 //  Created by Matteo Casu on 13/12/23.
@@ -10,6 +10,7 @@ import MyEssentialFeediOS
 
 extension ListViewController {
     
+    
     func simulateUserInitiatedFeedReload() {
         refreshControl?.simulatePullToRefresh()
     }
@@ -17,6 +18,17 @@ extension ListViewController {
     @discardableResult
     func simulateFeedImageViewVisible(at index: Int) -> FeedImageCell? {
         return feedImageView(at: index) as? FeedImageCell
+    }
+    
+    @discardableResult
+    func simulateFeedImageBecomingVisibleAgain(at row: Int) -> FeedImageCell? {
+        let view = simulateFeedImageViewNotVisible(at: row)
+
+        let delegate = tableView.delegate
+        let index = IndexPath(row: row, section: feedImagesSection)
+        delegate?.tableView?(tableView, willDisplay: view!, forRowAt: index)
+
+        return view
     }
     
     @discardableResult
@@ -61,7 +73,9 @@ extension ListViewController {
     }
     
     func numberOfRenderedFeedImageViews() -> Int {
-        return tableView.numberOfRows(inSection: feedImagesSection)
+        tableView.numberOfSections == 0 ? 0 : tableView.numberOfRows(inSection: feedImagesSection)
+//        tableView.numberOfSections > feedImagesSection ? tableView.numberOfRows(inSection: feedImagesSection) : 0
+
     }
     
     func feedImageView(at row: Int) -> UITableViewCell? {

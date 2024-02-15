@@ -8,15 +8,12 @@
 import UIKit
 
 public final class ErrorView: UIButton {
-    
-    
     public var message: String? {
-        get { return isVisible ? title(for: .normal) : nil }
+        get { return isVisible ? configuration?.title : nil }
         set { setMessageAnimated(newValue) }
     }
     
     public var onHide: (() -> Void)?
-
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,35 +24,33 @@ public final class ErrorView: UIButton {
         super.init(coder: coder)
     }
     
+    private var titleAttributes: AttributeContainer {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.center
+        
+        return AttributeContainer([
+            .paragraphStyle: paragraphStyle,
+            .font:  UIFont.preferredFont(forTextStyle: .body)
+        ])
+    }
     
     private func configure() {
-        backgroundColor = .errorBackgroundColor
-
+        var configuration = Configuration.plain()
+        configuration.titlePadding = 0
+        configuration.baseForegroundColor = .white
+        configuration.background.backgroundColor = .errorBackgroundColor
+        configuration.background.cornerRadius = 0
+        self.configuration = configuration
+        
         addTarget(self, action: #selector(hideMessageAnimated), for: .touchUpInside)
-        configureLabel()
+        
         hideMessage()
     }
-    
-    private func configureLabel() {
-        titleLabel?.textColor = .white
-        titleLabel?.textAlignment = .center
-        titleLabel?.numberOfLines = 0
-        titleLabel?.font = .preferredFont(forTextStyle: .body)
-        titleLabel?.adjustsFontForContentSizeCategory = true
-    }
-    
-    // called when is load from a nib or storyboard
-//    public override func awakeFromNib() {
-//        super.awakeFromNib()
-//        
-//        label.text = nil
-//        alpha = 0
-//    }
     
     private var isVisible: Bool {
         return alpha > 0
     }
-
+    
     private func setMessageAnimated(_ message: String?) {
         if let message = message {
             showAnimated(message)
@@ -63,11 +58,12 @@ public final class ErrorView: UIButton {
             hideMessageAnimated()
         }
     }
-
+    
     private func showAnimated(_ message: String) {
-        setTitle(message, for: .normal)
-        contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
-
+        configuration?.attributedTitle = AttributedString(message, attributes: titleAttributes)
+        
+        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        
         UIView.animate(withDuration: 0.25) {
             self.alpha = 1
         }
@@ -81,11 +77,11 @@ public final class ErrorView: UIButton {
                 if completed { self.hideMessage() }
             })
     }
-        
+    
     private func hideMessage() {
-        setTitle(nil, for: .normal)
         alpha = 0
-        contentEdgeInsets = .init(top: -2.5, left: 0, bottom: -2.5, right: 0)
+        configuration?.attributedTitle = nil
+        configuration?.contentInsets = .zero
         onHide?()
     }
 }
