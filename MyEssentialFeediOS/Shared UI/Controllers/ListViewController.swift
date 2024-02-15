@@ -54,6 +54,8 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
 
 //        refreshControl = refreshController?.view
         
+        
+        dataSource.defaultRowAnimation = .fade
         tableView.dataSource = dataSource
         
         configureErrorView()
