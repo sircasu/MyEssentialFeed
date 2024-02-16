@@ -17,7 +17,6 @@
 		850E24A92B6565EA0000D497 /* FeedImageCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E24A52B6565EA0000D497 /* FeedImageCell+TestHelpers.swift */; };
 		850E24AA2B6565EA0000D497 /* FeedUIIntegrationTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E24A32B6565EA0000D497 /* FeedUIIntegrationTests+LoaderSpy.swift */; };
 		850E24AB2B6565EA0000D497 /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E249D2B6565EA0000D497 /* UIRefreshControl+TestHelpers.swift */; };
-		850E24AC2B6565EA0000D497 /* FeedUIIntegrationTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E24A02B6565EA0000D497 /* FeedUIIntegrationTests+Localization.swift */; };
 		850E24AD2B6565EA0000D497 /* ListViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E249E2B6565EA0000D497 /* ListViewController+TestHelpers.swift */; };
 		850E24AE2B6565EA0000D497 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E24A12B6565EA0000D497 /* UIImage+TestHelpers.swift */; };
 		850E24B02B65660C0000D497 /* FeedUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E24AF2B65660C0000D497 /* FeedUIIntegrationTests.swift */; };
@@ -74,7 +73,6 @@
 		850E249D2B6565EA0000D497 /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		850E249E2B6565EA0000D497 /* ListViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListViewController+TestHelpers.swift"; sourceTree = "<group>"; };
 		850E249F2B6565EA0000D497 /* FeedUIIntegrationTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+Assertions.swift"; sourceTree = "<group>"; };
-		850E24A02B6565EA0000D497 /* FeedUIIntegrationTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+Localization.swift"; sourceTree = "<group>"; };
 		850E24A12B6565EA0000D497 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 		850E24A22B6565EA0000D497 /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		850E24A32B6565EA0000D497 /* FeedUIIntegrationTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+LoaderSpy.swift"; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 				850E24A52B6565EA0000D497 /* FeedImageCell+TestHelpers.swift */,
 				850E24A32B6565EA0000D497 /* FeedUIIntegrationTests+LoaderSpy.swift */,
 				850E249F2B6565EA0000D497 /* FeedUIIntegrationTests+Assertions.swift */,
-				850E24A02B6565EA0000D497 /* FeedUIIntegrationTests+Localization.swift */,
 				8572413A2B5D93700033CDD3 /* XCTestCase+MemoryLeakTracking.swift */,
 				8572413C2B5D93C40033CDD3 /* SharedTestHelpers.swift */,
 				85E473872B618635003B17B0 /* FeedImageDataLoaderSpy.swift */,
@@ -326,7 +323,6 @@
 				850E24A72B6565EA0000D497 /* UIControl+TestHelpers.swift in Sources */,
 				850E24A62B6565EA0000D497 /* FeedUIIntegrationTests+Assertions.swift in Sources */,
 				85938CA42B7FC39500B1452A /* CommentsUIIntegrationTests.swift in Sources */,
-				850E24AC2B6565EA0000D497 /* FeedUIIntegrationTests+Localization.swift in Sources */,
 				85E4738A2B61884B003B17B0 /* XCTestCase+FeedImageDataLoader.swift in Sources */,
 				850E24AA2B6565EA0000D497 /* FeedUIIntegrationTests+LoaderSpy.swift in Sources */,
 				85E473A12B655FD6003B17B0 /* SceneDelegateTests.swift in Sources */,
