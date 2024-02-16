@@ -11,7 +11,7 @@ import EssentialApp
 import MyEssentialFeed
 import MyEssentialFeediOS
 
-final class FeedUIIntegrationTests: XCTestCase {
+class FeedUIIntegrationTests: XCTestCase {
     
     
     func test_feedView_hasTitle() {
