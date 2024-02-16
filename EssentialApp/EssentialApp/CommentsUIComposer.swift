@@ -10,7 +10,7 @@ import Combine
 import MyEssentialFeed
 import MyEssentialFeediOS
 
-public final class CommentsIComposer {
+public final class CommentsUIComposer {
     private init() {}
     
     private typealias FeedPresentationAdapter = LoadResourcePresentationAdapter<[FeedImage], FeedViewAdapter>
@@ -30,7 +30,8 @@ public final class CommentsIComposer {
         presentationAdapter.presenter = LoadResourcePresenter(
             resourceView: FeedViewAdapter(
                 controller: feedController,
-                imageLoader: { imageLoader($0).dispatchOnMainQueue() }),
+                imageLoader: { _ in Empty<Data, Error>().eraseToAnyPublisher() }
+            ),
             loadingView: WeakRefVirtualProxy(feedController),
             errorView: WeakRefVirtualProxy(feedController),
             mapper: FeedPresenter.map
