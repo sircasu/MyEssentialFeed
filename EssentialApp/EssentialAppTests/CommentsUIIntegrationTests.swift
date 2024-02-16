@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Combine
 import UIKit
 import EssentialApp
 import MyEssentialFeed
@@ -27,20 +28,16 @@ class CommentsUIIntegrationTests: FeedUIIntegrationTests {
     override func test_loadFeedActions_requestFeedFromLoader() {
         
         let (sut, loader) = makeSUT()
-        XCTAssertEqual(loader.loadFeedCallCount, 0, "Expected no loading requests before view is loaded")
+        XCTAssertEqual(loader.loadCommentsCallCount, 0, "Expected no loading requests before view is loaded")
         
-        //        sut.loadViewIfNeeded() // viewDidLoad
-        //        XCTAssertEqual(loader.loadFeedCallCount, 0, "Expected no loading request once view before all the correct lifecycle are called")
-        
-        //        sut.loadViewIfNeeded() // viewDidLoad
         sut.simulateAppearance()
-        XCTAssertEqual(loader.loadFeedCallCount, 1, "Expected a loading request once view is loaded")
+        XCTAssertEqual(loader.loadCommentsCallCount, 1, "Expected a loading request once view is loaded")
         
-        sut.simulateUserInitiatedFeedReload()
-        XCTAssertEqual(loader.loadFeedCallCount, 2, "Expected another loading request once user initiates a load")
+        sut.simulateUserInitiatedReload()
+        XCTAssertEqual(loader.loadCommentsCallCount, 2, "Expected another loading request once user initiates a load")
         
-        sut.simulateUserInitiatedFeedReload()
-        XCTAssertEqual(loader.loadFeedCallCount, 3, "Expected a third loading request once user initiates another load")
+        sut.simulateUserInitiatedReload()
+        XCTAssertEqual(loader.loadCommentsCallCount, 3, "Expected a third loading request once user initiates another load")
         
         
     }
@@ -57,7 +54,7 @@ class CommentsUIIntegrationTests: FeedUIIntegrationTests {
         loader.completeFeedLoading(at: 0)
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once loading completes successfully")
         
-        sut.simulateUserInitiatedFeedReload()
+        sut.simulateUserInitiatedReload()
         XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once user initiates a reload")
         
         loader.completeFeedLoadingWithError(at: 1)
@@ -82,7 +79,7 @@ class CommentsUIIntegrationTests: FeedUIIntegrationTests {
         assertThat(sut, isRendering: [image0])
         
         
-        sut.simulateUserInitiatedFeedReload()
+        sut.simulateUserInitiatedReload()
         loader.completeFeedLoading(with: [image0, image1, image2, image3], at: 1)
         XCTAssertEqual(sut.numberOfRenderedFeedImageViews(), 4)
         assertThat(sut, isRendering: [image0, image1, image2, image3])
@@ -103,7 +100,7 @@ class CommentsUIIntegrationTests: FeedUIIntegrationTests {
         assertThat(sut, isRendering: [image0, image1])
         
         
-        sut.simulateUserInitiatedFeedReload()
+        sut.simulateUserInitiatedReload()
         loader.completeFeedLoading(with: [], at: 1)
         assertThat(sut, isRendering: [])
         
@@ -120,7 +117,7 @@ class CommentsUIIntegrationTests: FeedUIIntegrationTests {
         loader.completeFeedLoading(with: [image0], at: 0)
         assertThat(sut, isRendering: [image0])
         
-        sut.simulateUserInitiatedFeedReload()
+        sut.simulateUserInitiatedReload()
         loader.completeFeedLoadingWithError(at: 1)
         assertThat(sut, isRendering: [image0])
         
@@ -157,7 +154,7 @@ class CommentsUIIntegrationTests: FeedUIIntegrationTests {
         loader.completeFeedLoadingWithError(at: 0)
         XCTAssertEqual(sut.errorMessage, loadError)
         
-        sut.simulateUserInitiatedFeedReload()
+        sut.simulateUserInitiatedReload()
         XCTAssertEqual(sut.errorMessage, nil)
     }
     
@@ -197,63 +194,32 @@ class CommentsUIIntegrationTests: FeedUIIntegrationTests {
     }
     
     
+    private class LoaderSpy {
+        
+        // MARK: - FeedLoader
+        
+        private var requests = [PassthroughSubject<[FeedImage], Error>]() // capturing publisher
+        
+        var loadCommentsCallCount: Int {
+            return requests.count
+        }
+        
+        func loadPublisher() -> AnyPublisher<[FeedImage], Error> {
+            
+            let publisher = PassthroughSubject<[FeedImage], Error>()
+            requests.append(publisher)
+            return publisher.eraseToAnyPublisher()
+        }
+        
+        func completeFeedLoading(with feed: [FeedImage] = [], at index: Int = 0) {
+            requests[index].send(feed)
+        }
+        
+        func completeFeedLoadingWithError(at index: Int = 0) {
+            let error = NSError(domain: "an error", code: 0)
+            requests[index].send(completion: .failure(error))
+        }
+    }
 }
 
 
-
-//extension ListViewController {
-//    
-//    public func simulateAppearance() {
-//        
-//        if !isViewLoaded {
-//            loadViewIfNeeded()
-//            prepareForFirstAppearance()
-//            
-//        }
-//        beginAppearanceTransition(true, animated: false) // viewVillAppear
-//        endAppearanceTransition() // viewVillAppear + viewDidAppear
-//    }
-//    
-//    
-//    private func prepareForFirstAppearance() {
-//        setSmallFrameToPreventRenderingCells()
-//        replaceRefreshControlWithFakeForiOS17Support()
-//    }
-//    
-//    private func setSmallFrameToPreventRenderingCells() {
-//        
-//        tableView.frame = CGRect(x: 0, y: 0, width: 390, height: 1)
-//    }
-//    
-//    func replaceRefreshControlWithFakeForiOS17Support() {
-//        
-//        let fake = FakeRefreshControl()
-//        
-//        refreshControl?.allTargets.forEach { target in
-//            refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach { action in
-//                fake.addTarget(target, action: Selector(action), for: .valueChanged)
-//            }
-//            
-//            refreshControl = fake
-//            //            refreshController?.view = fake
-//        }
-//    }
-//}
-//
-//
-//
-//
-//private class FakeRefreshControl: UIRefreshControl {
-//    
-//    private var _isRefreshing = false
-//    
-//    override var isRefreshing: Bool { _isRefreshing }
-//    
-//    override func beginRefreshing() {
-//        _isRefreshing = true
-//    }
-//    
-//    override func endRefreshing() {
-//        _isRefreshing = false
-//    }
-//}
