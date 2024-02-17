@@ -9,7 +9,7 @@ import XCTest
 
 extension XCTestCase {
     
-    public func assert(snapshot: UIImage, named name: String, file: StaticString = #file, line: UInt = #line) {
+    public func assert(snapshot: UIImage, named name: String, file: StaticString = #filePath, line: UInt = #line) {
         
         let snapshotURL = makeSnapshotURL(named: name, file: file)
         let snapshotData = makeSnapshotData(for: snapshot, file: file, line: line)
@@ -37,7 +37,7 @@ extension XCTestCase {
 
 
 
-    public func record(snapshot: UIImage, named name: String, file: StaticString = #file, line: UInt = #line) {
+    public func record(snapshot: UIImage, named name: String, file: StaticString = #filePath, line: UInt = #line) {
         let snapshotURL = makeSnapshotURL(named: name, file: file)
         let snapshotData = makeSnapshotData(for: snapshot, file: file, line: line)
 
@@ -74,7 +74,7 @@ extension XCTestCase {
     }
 
 
-    private func makeSnapshotData(for snapshot: UIImage, file: StaticString = #file, line: UInt = #line) -> Data? {
+    private func makeSnapshotData(for snapshot: UIImage, file: StaticString = #filePath, line: UInt = #line) -> Data? {
         
         guard let data = snapshot.pngData() else {
             XCTFail("Failed to generate PNG data representation from snapshot", file: file, line: line)

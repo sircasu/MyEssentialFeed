@@ -165,8 +165,8 @@
 			children = (
 				857241392B5D93620033CDD3 /* Helpers */,
 				85E473A02B655FD6003B17B0 /* SceneDelegateTests.swift */,
-				850E24AF2B65660C0000D497 /* FeedUIIntegrationTests.swift */,
 				850E24B12B6789710000D497 /* FeedAcceptanceTests.swift */,
+				850E24AF2B65660C0000D497 /* FeedUIIntegrationTests.swift */,
 				85938CA32B7FC39500B1452A /* CommentsUIIntegrationTests.swift */,
 			);
 			path = EssentialAppTests;
