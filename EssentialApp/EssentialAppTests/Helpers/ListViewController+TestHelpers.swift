@@ -158,6 +158,10 @@ extension ListViewController {
     }
     
     
+    var canLoadMoreFeed: Bool {
+        loadMoreFeedCell() != nil
+    }
+    
     func numberOfRenderedFeedImageViews() -> Int {
         numberOfRows(in: feedImagesSection)
     }

@@ -94,16 +94,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // functional way with combine 
 
-        let url = FeedEndpoint.get.url(baseURL: baseURL)
+        let url = FeedEndpoint.get().url(baseURL: baseURL)
         return httpClient
             .getPublisher(url: url)
             .tryMap(FeedItemsMapper.map)
             .caching(to: localFeedLoader)
             .fallback(to: localFeedLoader.loadPublisher)
-            .map {
-                Paginated(items: $0)
+            .map { items in
+                Paginated(items: items, loadMorePublisher: self.makeRemoteLoadMoreLoader(items: items, last: items.last))
             }
             .eraseToAnyPublisher()
+    }
+    
+    
+    private func makeRemoteLoadMoreLoader(items: [FeedImage], last: FeedImage?) -> (() -> AnyPublisher<Paginated<FeedImage>,Error>)? {
+        
+        last.map { lastItem in
+            let url = FeedEndpoint.get(after: lastItem).url(baseURL: baseURL)
+            
+            return { [httpClient] in
+                httpClient
+                    .getPublisher(url: url)
+                    .tryMap(FeedItemsMapper.map)
+                    .map { newsItems in
+                        let allItems = items + newsItems
+                        return Paginated(
+                            items: allItems,
+                            loadMorePublisher:  self.makeRemoteLoadMoreLoader(items: allItems, last: newsItems.last))
+                    }.eraseToAnyPublisher()
+            }
+        }
     }
     
     private func makeLocalImageLoaderWithRemoteFallback(url: URL) -> FeedImageDataLoader.Publisher {
