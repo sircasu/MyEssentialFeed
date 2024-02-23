@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850860132B888CA100F8D779 /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850860122B888CA100F8D779 /* NullStore.swift */; };
 		850E24972B6565BB0000D497 /* FeedUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E24942B6565BA0000D497 /* FeedUIComposer.swift */; };
 		850E24982B6565BB0000D497 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E24952B6565BA0000D497 /* WeakRefVirtualProxy.swift */; };
 		850E249A2B6565BB0000D497 /* LoadResourcePresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E24912B6565BA0000D497 /* LoadResourcePresentationAdapter.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		850860122B888CA100F8D779 /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 		850E24912B6565BA0000D497 /* LoadResourcePresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresentationAdapter.swift; sourceTree = "<group>"; };
 		850E24922B6565BA0000D497 /* FeedViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewAdapter.swift; sourceTree = "<group>"; };
 		850E24942B6565BA0000D497 /* FeedUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUIComposer.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				857240F92B5D87080033CDD3 /* AppDelegate.swift */,
 				857240FB2B5D87080033CDD3 /* SceneDelegate.swift */,
+				850860122B888CA100F8D779 /* NullStore.swift */,
 				85F39D742B754F3A009DA170 /* CombineHelpers.swift */,
 				857240FD2B5D87080033CDD3 /* ViewController.swift */,
 				850E24942B6565BA0000D497 /* FeedUIComposer.swift */,
@@ -304,6 +307,7 @@
 			files = (
 				857240FE2B5D87080033CDD3 /* ViewController.swift in Sources */,
 				850E24972B6565BB0000D497 /* FeedUIComposer.swift in Sources */,
+				850860132B888CA100F8D779 /* NullStore.swift in Sources */,
 				85F39D752B754F3A009DA170 /* CombineHelpers.swift in Sources */,
 				850E24982B6565BB0000D497 /* WeakRefVirtualProxy.swift in Sources */,
 				85938CA62B7FC6CF00B1452A /* CommentsUIComposer.swift in Sources */,
