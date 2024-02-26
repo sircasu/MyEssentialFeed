@@ -18,23 +18,21 @@ public final class LocalFeedImageDataLoader {
 }
 
 extension LocalFeedImageDataLoader: FeedImageDataCache {
-    public typealias SaveResult = FeedImageDataCache.Result
     
     public enum SaveError: Error {
         case failed
     }
 
-    public func save(_ data: Data, for url: URL, completion: @escaping (SaveResult) -> Void) {
+    public func save(_ data: Data, for url: URL) throws {
         
-        completion(SaveResult {
+        do {
             
             try store.insert(data, for: url)
-        }.mapError { _ in
-            SaveError.failed
-        })
-
-      
+        } catch  {
+            throw SaveError.failed
+        }
     }
+
 }
 
     
