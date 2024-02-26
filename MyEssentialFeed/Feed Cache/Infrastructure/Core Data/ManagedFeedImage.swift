@@ -20,12 +20,15 @@ internal class ManagedFeedImage: NSManagedObject {
 
 extension ManagedFeedImage {
     
-    static func data(with url: URL, in context: NSManagedObjectContext) throws -> ManagedFeedImage? {
-        
-        if let data = context.userInfo[url] as? ManagedFeedImage { return data }
-        
-        return try first(with: url, in: context)
+    static func data(with url: URL, in context: NSManagedObjectContext) throws -> Data? {
+        return try first(with: url, in: context)?.data
     }
+//    static func data(with url: URL, in context: NSManagedObjectContext) throws -> ManagedFeedImage? {
+//        
+//        if let data = context.userInfo[url] as? ManagedFeedImage { return data }
+//        
+//        return try first(with: url, in: context)
+//    }
     
     static func first(with url: URL, in context: NSManagedObjectContext) throws -> ManagedFeedImage? {
         let request = NSFetchRequest<ManagedFeedImage>(entityName: entity().name!)
