@@ -34,10 +34,12 @@ class CommentsUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.loadCommentsCallCount, 1, "Expected a loading request once view is loaded")
         
         sut.simulateUserInitiatedReload()
-        XCTAssertEqual(loader.loadCommentsCallCount, 2, "Expected another loading request once user initiates a load")
+        XCTAssertEqual(loader.loadCommentsCallCount, 1, "Expected another loading request once user initiates a load")
+        
+        loader.completeCommentsLoading(at: 0)
         
         sut.simulateUserInitiatedReload()
-        XCTAssertEqual(loader.loadCommentsCallCount, 3, "Expected a third loading request once user initiates another load")
+        XCTAssertEqual(loader.loadCommentsCallCount, 2, "Expected a third loading request once user initiates another load")
         
         
     }
@@ -238,24 +240,21 @@ class CommentsUIIntegrationTests: XCTestCase {
     
     
     private class LoaderSpy {
-        
-        // MARK: - FeedLoader
-        
-        private var requests = [PassthroughSubject<[ImageComment], Error>]() // capturing publisher
+        private var requests = [PassthroughSubject<[ImageComment], Error>]()
         
         var loadCommentsCallCount: Int {
             return requests.count
         }
-        
+                
         func loadPublisher() -> AnyPublisher<[ImageComment], Error> {
-            
             let publisher = PassthroughSubject<[ImageComment], Error>()
             requests.append(publisher)
             return publisher.eraseToAnyPublisher()
         }
-        
+
         func completeCommentsLoading(with comments: [ImageComment] = [], at index: Int = 0) {
             requests[index].send(comments)
+            requests[index].send(completion: .finished)
         }
         
         func completeCommentsLoadingWithError(at index: Int = 0) {
