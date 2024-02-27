@@ -3,4 +3,54 @@
    uuid = "6182E713-A090-4578-AA85-1ED1CE60BE9B"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2BF60CA3-FF63-455B-B7FF-85ACE11C2EBE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyEssentialFeed/Feed Cache/Infrastructure/Core Data/CoreDataFeedStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "performSync(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2BF60CA3-FF63-455B-B7FF-85ACE11C2EBE - 9aeae8843c79a47f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyEssentialFeed.CoreDataFeedStore.performSync&lt;&#x3c4;_0_0&gt;((__C.NSManagedObjectContext) -&gt; Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;) throws -&gt; &#x3c4;_0_0"
+                  moduleName = "MyEssentialFeed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/matteocasu/iosLeadEssentials/MyEssentialFeed/MyEssentialFeed/Feed%20Cache/Infrastructure/Core%20Data/CoreDataFeedStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "468">
+               </Location>
+               <Location
+                  uuid = "2BF60CA3-FF63-455B-B7FF-85ACE11C2EBE - d911062a06e0cc5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in MyEssentialFeed.CoreDataFeedStore.performSync&lt;&#x3c4;_0_0&gt;((__C.NSManagedObjectContext) -&gt; Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;) throws -&gt; &#x3c4;_0_0"
+                  moduleName = "MyEssentialFeed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/matteocasu/iosLeadEssentials/MyEssentialFeed/MyEssentialFeed/Feed%20Cache/Infrastructure/Core%20Data/CoreDataFeedStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "200">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
