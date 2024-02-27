@@ -49,7 +49,7 @@ extension LocalFeedImageDataLoader: FeedImageDataLoader {
     public func loadImageData(from url: URL) throws -> Data {
         
         do {
-            if let imageData = try store.retrieve(dataForUrl: url) {
+            if let imageData = try store.retrieve(dataForURL: url) {
                 return imageData
             }
         } catch {

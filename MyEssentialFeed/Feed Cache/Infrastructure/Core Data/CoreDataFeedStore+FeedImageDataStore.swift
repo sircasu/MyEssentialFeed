@@ -22,7 +22,7 @@ extension CoreDataFeedStore: FeedImageDataStore {
         }
     }
     
-    public func retrieve(dataForUrl url: URL) throws -> Data? {
+    public func retrieve(dataForURL url: URL) throws -> Data? {
 
         try performSync { context in
             

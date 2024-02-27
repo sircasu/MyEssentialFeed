@@ -26,7 +26,7 @@ class FeedImageDataStoreSpy: FeedImageDataStore {
         try insertionResult?.get()
     }
 
-    func retrieve(dataForUrl url: URL) throws -> Data? {
+    func retrieve(dataForURL url: URL) throws -> Data? {
 
         receivedMessages.append(.retrieve(dataFor: url))
         return try retrievalResult?.get()
