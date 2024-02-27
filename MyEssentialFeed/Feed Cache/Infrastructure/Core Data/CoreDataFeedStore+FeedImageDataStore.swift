@@ -1,5 +1,5 @@
 //
-//  CoreDataFeedStore+FeedImageDataLoader.swift
+//  CoreDataFeedStore+FeedImageDataStore.swift
 //  MyEssentialFeed
 //
 //  Created by Matteo Casu on 16/01/24.
