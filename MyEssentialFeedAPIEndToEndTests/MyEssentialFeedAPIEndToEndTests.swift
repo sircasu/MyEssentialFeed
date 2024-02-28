@@ -52,7 +52,7 @@ final class MyEssentialFeedAPIEndToEndTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func getFeedResult(file: StaticString = #filePathPath, line: UInt = #line) -> Swift.Result<[FeedImage], Error>? {
+    private func getFeedResult(file: StaticString = #filePath, line: UInt = #line) -> Swift.Result<[FeedImage], Error>? {
         
         let client = ephemeralClient()
         let exp = expectation(description: "Wait for load completion")
@@ -74,14 +74,14 @@ final class MyEssentialFeedAPIEndToEndTests: XCTestCase {
     }
     
     
-    private func getFeedImageDataResult(file: StaticString = #filePath, line: UInt = #line) -> FeedImageDataLoader.Result? {
+    private func getFeedImageDataResult(file: StaticString = #filePath, line: UInt = #line) -> Result<Data, Error>? {
         
 
         let client = ephemeralClient()
         let url = feedTestServerURL.appendingPathComponent("73A7F70C-75DA-4C2E-B5A3-EED40DC53AA6/image")
         let exp = expectation(description: "Wait for load completion")
 
-        var receivedResult: FeedImageDataLoader.Result?
+        var receivedResult: Result<Data, Error>?
         client.get(from: url) { result in
             receivedResult = result.flatMap({ (data, response) in
                 do {
