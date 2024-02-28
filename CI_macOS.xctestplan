@@ -54,20 +54,6 @@
         "identifier" : "85776FBE2B020961007AF2F0",
         "name" : "MyEssentialFeedCacheIntegrationTests"
       }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:MyEssentialFeed.xcodeproj",
-        "identifier" : "8525F2D52B0FD08C00BD7CCA",
-        "name" : "MyEssentialFeediOSTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:EssentialApp\/EssentialApp.xcodeproj",
-        "identifier" : "8572410B2B5D870A0033CDD3",
-        "name" : "EssentialAppTests"
-      }
     }
   ],
   "version" : 1

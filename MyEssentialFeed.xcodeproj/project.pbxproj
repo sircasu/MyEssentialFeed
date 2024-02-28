@@ -286,6 +286,7 @@
 		859DC1C22AD46049008DFD8C /* FeedItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsMapper.swift; sourceTree = "<group>"; };
 		859DC1C52AD646C7008DFD8C /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		85A5B7B92B2AE2C2007F3A63 /* FeedImageCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageCellController.swift; sourceTree = "<group>"; };
+		85D6DCCB2B8F47EB00728A8A /* CI_iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CI_iOS.xctestplan; path = ../CI_iOS.xctestplan; sourceTree = "<group>"; };
 		85D7A2C72B7CB6C5009EE414 /* ListSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSnapshotTests.swift; sourceTree = "<group>"; };
 		85D7A2C92B7CB8F2009EE414 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
 		85D7A2CB2B7CB967009EE414 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
@@ -382,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				8553211D2B0FD130005E55B3 /* MyEssentialFeediOS.xctestplan */,
+				85D6DCCB2B8F47EB00728A8A /* CI_iOS.xctestplan */,
 				8525F2C82B0FCD9D00BD7CCA /* MyEssentialFeedAPIEndToEndTests.xctestplan */,
 				85776FC92B0209C7007AF2F0 /* MyEssentialFeedCacheIntegrationTests.xctestplan */,
 				854410382ADAF0D800F6A68D /* CI_macOS.xctestplan */,
