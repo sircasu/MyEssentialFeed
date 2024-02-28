@@ -66,7 +66,7 @@ final class LoadResourcePresenterTests: XCTestCase {
     func test_didFinishLoadingWithMapperError_displaysLocalizedErrorMessageAndStopsLoading() {
         
         let (sut, view) = makeSUT()
-        let feed = uniqueImageFeed().models
+        _ = uniqueImageFeed().models
         
         sut.didFinishLoading(with: anyNSError())
         
